@@ -1,0 +1,371 @@
+{% extends "nav.html" %} {% block title %}Home{% endblock %} {% block content %}
+
+  <head>
+
+
+    <div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
+      <h1 class="text-2xl font-bold inline-block">Governance</h1>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+  </head>
+
+  <body style="background-color:;">
+
+  <style>
+      /* Custom CSS for Scrollbar */
+      .scrollable-container {
+          height: 150px; /* Adjust height as needed */
+          overflow-y: auto;
+          border: 1px solid #ccc; /* Optional: add border for clarity */
+          border-radius: 4px; /* Optional: add border radius */
+      }
+  </style>
+
+
+
+
+
+    <!--Client Pearner and Governance Horizontally Starts--->
+
+    <div class="flex gap-4 p-3">
+    <div class=" w-75">
+      <div class="bg-orange-200 p-1">
+        <h3 class="text-lg font-bold text-black-400"> Client Partners </h3>
+      </div>
+      <div class="p-3 bg-white bg-info bg-opacity-10 border border-start-0 rounded-end">
+        <div>
+          The Quality engineering services are rendered to 16 customers that includes 68 resources on the various projects of the client partners.
+        </div>
+      </div>
+    </div>
+
+    <div class=" w-55">
+      <div class="bg-orange-200 p-1">
+        <h3 class="text-lg font-bold text-black-400"> Governance - Council Updates </h3>
+      </div>
+      <div class="bg-white border border-solid border-slate-400 p-1">
+        <p> -> The practice hits client partner count to 17.</p>
+        <p>-> The bench resources head count is always kept under 10.</p>
+      </div>
+    </div>
+  </div>
+
+  <!--Client Pearner and Governance Horizontally Ends--->
+
+    <!--Table Start--->    
+    <!-- Main Content Section -->
+  <div class="container-fluid">
+    <div class="flex gap-3 p-2">
+    <!-- Right Section (Client Name and Resources Table) -->
+      <div class="col-lg-3">
+        <table border="1">
+          <thead>
+            <tr>
+              <th class="bg-orange-200 p-1">Client Name</th>
+              <th class="bg-orange-200 p-1">Resources</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Accuray</td>
+              <td style="text-align: center;">1</td>
+          </tr>
+          <tr>
+              <td>Arch Capital</td>
+              <td style="text-align: center;">1</td>
+          </tr>
+          <tr>
+              <td>Carrier</td>
+              <td style="text-align: center;">2</td>
+          </tr>
+          <tr>
+              <td>Mars</td>
+              <td style="text-align: center;">5</td>
+          </tr>
+          <tr>
+              <td>Mcdonalds</td>
+              <td style="text-align: center;">3</td>
+          </tr>
+          <tr>
+              <td>Merck</td>
+              <td style="text-align: center;">4</td>
+          </tr>
+          <tr>
+              <td>Nationwide</td>
+              <td style="text-align: center;">3</td>
+          </tr>
+          <tr>
+              <td>Northen Trust</td>
+              <td style="text-align: center;">1</td>
+          </tr>
+          <tr>
+              <td>Pepsico</td>
+              <td style="text-align: center;">22</td>
+          </tr>
+          <tr>
+              <td>Polen</td>
+              <td style="text-align: center;">2</td>
+          </tr>
+          <tr>
+              <td>Practice - Bench</td>
+              <td style="text-align: center;">8</td>
+          </tr>
+          <tr>
+              <td>Prologis</td>
+              <td style="text-align: center;">5</td>
+          </tr>
+          <tr>
+              <td>Ptp</td>
+              <td style="text-align: center;">1</td>
+          </tr>
+          <tr>
+              <td>Quantum Energy Partners</td>
+              <td style="text-align: center;">2</td>
+          </tr>
+          <tr>
+              <td>T-Mobile</td>
+              <td style="text-align: center;">5</td>
+          </tr>
+          <tr>
+              <td>Tata Steel</td>
+              <td style="text-align: center;">2</td>
+          </tr>
+          </tbody>
+        </table>      
+      </div>
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="col-lg-4">
+        <div>
+            <div class="bg-orange-200 p-1 rounded-lg flex justify-between items-center">
+                <h2 class="text-lg font-bold text-black-400">Select Project</h2>
+                <select id="accelerators" name="accelerators" class="p-2 border border-gray-300 rounded">
+                    <option value="All">All</option>
+                    <option value="Link1">Accuray</option>
+                    <option value="Link2">Arch Capital</option>
+                    <option value="Link3">Carrier</option>
+                    <option value="Link4">Mars</option>
+                    <option value="Link5">Mcdonalds</option>
+                    <option value="Link6">Merck</option>
+                    <option value="Link7">Nationwide</option>
+                    <option value="Link8">Northen Trust</option>
+                    <option value="Link9">Pepsico</option>
+                    <option value="Link10">Polen</option>
+                    <option value="Link11">Practice - Bench</option>
+                    <option value="Link12">Prologis</option>
+                    <option value="Link13">Ptp</option>
+                    <option value="Link14">Quantum Energy Partners</option>
+                    <option value="Link15">T-Mobile</option>
+                    <option value="Link16">Tata Steel</option>
+                </select>
+            </div>
+            <div class="flex mt-4">
+                <div class="w-full border border-solid border-slate-400 p-1">
+                    <div class="flex justify-between bg-orange-200 p-2 rounded-lg">
+                        <div class="w-1/2 text-center font-bold text-black">Project</div>
+                        <div class="w-1/2 text-center font-bold text-black">Resources</div>
+                    </div>
+                    <div id="results" class="mt-1 scrollable-container">
+                        <!-- Results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- div 3 -->
+    </div> 
+
+  </div>
+
+
+
+
+
+  <script>
+    var xValues = ["Accuray", "Arch Capital", "Carrier", "Mars", "Mcdonalds", "Merck", "Nationwide", "Northen Trust", "Pepsico", "Polen", "Practice - Bench", "Prologis", "Ptp", "Quantum Energy Partners", "T-Mobile", "Tata Steel"];
+    var yValues = [1, 1, 2, 5, 3, 4, 3, 1, 22, 2, 8, 5, 1, 2, 5, 2];
+    var barColors = ["#00FF00", "green", "orange", "orange", "brown", "#DEB887", "#5F9EA0", "#FFF8DC", "#00BFFF", "#8B008B", "#FF8C00", "#FF00FF", "#8B4513", "#8FBC8F", "#FA8072", "#B8860B"];
+
+    new Chart("myChart", {
+      type: "horizontalBar", // Changed to horizontalBar
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Display bars horizontally
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: "QE Resource Spread"
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    var xValues = ["Accuray", "Arch Capital", "Carrier", "Mars", "Mcdonalds", "Merck", "Nationwide", "Northen Trust", "Pepsico", "Polen", "Practice - Bench", "Prologis", "Ptp", "QEP", "T-Mobile", "Tata Steel"];
+    var yValues = [1, 1, 2, 5, 3, 4, 3, 1, 22, 2, 8, 5, 1, 2, 5, 2];
+    var barColors = ["#00FF00", "green", "orange", "orange", "brown", "#DEB887", "#5F9EA0", "#FFF8DC", "#00BFFF", "#8B008B", "#FF8C00", "#FF00FF", "#8B4513", "#8FBC8F", "#FA8072", "#B8860B"];
+
+    new Chart("myChart", {
+      type: "horizontalBar", // Changed to horizontalBar
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Display bars horizontally
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: "Resource graph" // <-- Your title here
+          }
+        }
+      }
+    });
+          </script>
+
+
+         <!-- Left Section (Projects and Resources Table) -->
+
+      </div>
+  </div>
+
+  <!-- Bootstrap JavaScript and Tailwind CSS (optional, for utility classes) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.js"></script>
+
+  <!-- JavaScript for Dynamic Content -->
+  <script>
+      const data = {
+          'Link1': [{ Accelerator: 'Accuracy', Direct: '', SPOC: '', NEW: '1' }],
+          'Link2': [{ Accelerator: 'Arch Incurance Power BI Stuff Aug', Direct: '', SPOC: '', NEW: '1'}],
+          'Link3': [{ Accelerator: 'Japan Sf Landing Layer', Direct: '', SPOC: '', NEW: '2'}],
+          'Link4': [
+              { Accelerator: 'Mars_Global_Mw_Rtm Fast_2023_Pahse1', Direct: '', SPOC: '', NEW: '3'},
+              { Accelerator: 'Mars_Global_Pet_Petcare R&D Digital Ecosystem_2023', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Mars_Us_Mw_Fetch Dashboard Enhancement_2023', Direct: '', SPOC: '', NEW: '1'}
+          ],
+          'Link5': [{ Accelerator: 'Mcdonalds_Conjoint,Engine Refreshes & R&D Extensions', Direct: '', SPOC: '', NEW: '3'}],
+          'Link6': [
+              { Accelerator: 'Merck_Clearsight_Forecasting', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Merck_Forecast Demands_Q4 & Q1', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Merck_Pie', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Merck_Sotatercept_ Launch Dashboard', Direct: '', SPOC: '', NEW: '1'}
+          ],
+          'Link7': [{ Accelerator: 'Nationwide_Data_Curation_Service', Direct: '', SPOC: '', NEW: '3'}],
+          'Link8': [{ Accelerator: 'Northern Trust', Direct: '', SPOC: '', NEW: '1'}],
+          'Link9': [
+              { Accelerator: 'Ecomm Inventory Optimization', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Cgf_Compass', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Cgf_Potato Sourcing Matrix Automation', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Cto Cv Pepiris', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'Pepsico_Cto Cv_Label Right', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Data Foundation_Fp&A', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Hilton_Asset Tracker Automation', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Maw Rhythm_Hotspots', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_P-Rec_Ingestion', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'Pepsico_Vision Sales_Automation', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Warehouse Advanced PMI', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Warehouse Health Check_2023', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'Pepsico_Warehousing Standard', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'Pepsico_Wms Evolution_2023', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico_Workflow Transformer_2023', Direct: '', SPOC: '', NEW: '1'}
+          ],
+          'Link10': [
+              { Accelerator: 'Polen', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Polen GSA 2.0 Atoiv', Direct: '', SPOC: '', NEW: '1'}
+          ],
+          'Link11': [
+              { Accelerator: 'Bench', Direct: '', SPOC: '', NEW: '8'}
+          ],
+          'Link12': [
+              { Accelerator: 'Prologis Us', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Prologis_Us Jd System Test Plan', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Prologis_Us_Lease_Reconciliation_Tool', Direct: '', SPOC: '', NEW: '1'}
+          ],
+          'Link13': [
+              { Accelerator: 'Ptp01 – Digital Management Command Center (Dmcc)', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Ptp01 – Gartner-Furnished Credit Enhancement', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Ptp01 – Gartner-Managed It Sourcing Market', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Ptp01 – Supplier Performance Risk', Direct: '', SPOC: '', NEW: '1'}
+          ],
+          'Link14': [{ Accelerator: 'Quantum Energy Partners_Economics, Politics And Public Policy', Direct: '', SPOC: '', NEW: '2'}],
+          'Link15': [{ Accelerator: 'T-Mobile_Contract Lifecycle Management  & Templates', Direct: '', SPOC: '', NEW: '1'}],
+          'Link16': [
+              { Accelerator: 'The Navigator Digital Supply Chain Audit', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Tata Steel', Direct: '', SPOC: '', NEW: '3'}
+          ],
+          'All': [
+              { Accelerator: 'Accuray', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Arch Capital', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Carrier', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'Mars', Direct: '', SPOC: '', NEW: '3'},
+              { Accelerator: 'Mcdonalds', Direct: '', SPOC: '', NEW: '3'},
+              { Accelerator: 'Merck', Direct: '', SPOC: '', NEW: '4'},
+              { Accelerator: 'Nationwide', Direct: '', SPOC: '', NEW: '3'},
+              { Accelerator: 'Northen Trust', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Pepsico', Direct: '', SPOC: '', NEW: '22'},
+              { Accelerator: 'Polen', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'Practice - Bench', Direct: '', SPOC: '', NEW: '8'},
+              { Accelerator: 'Prologis', Direct: '', SPOC: '', NEW: '4'},
+              { Accelerator: 'Ptp', Direct: '', SPOC: '', NEW: '4'},
+              { Accelerator: 'Quantum Energy Partners', Direct: '', SPOC: '', NEW: '2'},
+              { Accelerator: 'T-Mobile', Direct: '', SPOC: '', NEW: '1'},
+              { Accelerator: 'Tata Steel', Direct: '', SPOC: '', NEW: '3'}
+          ]
+      };
+
+      const selectElement = document.getElementById('accelerators');
+      const resultsContainer = document.getElementById('results');
+
+      selectElement.addEventListener('change', (event) => {
+          const selectedValue = event.target.value;
+          const projects = data[selectedValue];
+
+          if (projects) {
+              const html = projects.map(project => `
+                  <div class="flex justify-between p-2">
+                      <div class="w-1/2 text-left">${project.Accelerator}</div>
+                      <div class="w-1/2 text-right">${project.NEW}</div>
+                  </div>
+              `).join('');
+
+              resultsContainer.innerHTML = html;
+          }
+      });
+  </script>
+
+  
+
+
+  {% endblock %}
+

@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #e6e6e6;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+}
+
+nav a:hover {
+  background-color: #ccc;
+}
+
+main {
+  display: grid;
+  gap: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Add other styles here */

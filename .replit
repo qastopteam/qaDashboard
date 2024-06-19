@@ -1,5 +1,5 @@
 entrypoint = "main.py"
-modules = ["python-3.10:v20-20230824-f46249a"]
+modules = ["nodejs-20:v8-20230920-bd784b9", "python-3.10:v20-20230824-f46249a"]
 
 hidden = [".pythonlibs"]
 
@@ -11,5 +11,10 @@ run = ["sh", "-c", "python3 main.py"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
+localPort = 81
+externalPort = 3000
+
+[[ports]]
 localPort = 5000
 externalPort = 80
+exposeLocalhost = true
