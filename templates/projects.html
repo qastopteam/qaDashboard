@@ -1,0 +1,336 @@
+{% extends "nav.html" %} {% block title %}Projects{% endblock %} {% block content %}
+<!-- Header Section -->
+<div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
+  <h1 class="text-2xl font-bold inline-block">Projects</h1>
+</div>
+<!-- End of Header Section -->
+<div class="flex gap-4 p-2">
+  <div class="flex flex-col gap-4">
+    <div>
+      <div class="bg-gray-200 p-1 rounded-lg">
+        <h3 class="text-lg font-bold text-black-400">Projects RAG Status</h3>
+      </div>
+      <div class="border border-solid border-slate-400 p-1">
+        The Quality Engineering monitors the weekly health check for the
+        projects worked on and uses this dashboard for monitoring the high-alert
+        projects for solutionizing a better approach to meet the deadlines.
+      </div>
+    </div>
+    <div>
+      <div class="bg-gray-200 p-1 rounded-lg">
+        <h3 class="text-lg font-bold text-black-400">Add New Project</h3>
+      </div>
+      <form
+        id="add-project-form"
+        class="border border-solid border-slate-400 p-2 mt-2 rounded-lg"
+      >
+        <div class="flex gap-4">
+          <input
+            type="text"
+            name="project"
+            placeholder="Project Name"
+            class="p-2 border border-gray-300 rounded w-full"
+            required
+          />
+          <select
+            name="status"
+            class="p-2 border border-gray-300 rounded"
+            required
+          >
+            <option value="R">Red</option>
+            <option value="A">Amber</option>
+            <option value="G">Green</option>
+          </select>
+          <input
+            type="text"
+            name="impediments"
+            placeholder="Impediments"
+            class="p-2 border border-gray-300 rounded w-full"
+            required
+          />
+          <input
+            type="text"
+            name="resource"
+            placeholder="Resource"
+            class="p-2 border border-gray-300 rounded w-full"
+            required
+          />
+        </div>
+        <button type="submit" class="mt-2 p-2 bg-orange-700 text-white rounded">
+          Add Project
+        </button>
+      </form>
+    </div>
+    <div>
+      <div class="bg-gray-200 p-1 rounded-lg flex justify-between items-center">
+        <h3 class="text-lg font-bold text-black-400">RAG Status</h3>
+        <select
+          id="rag-status"
+          name="rag_status"
+          class="p-2 border border-gray-300 rounded"
+        >
+          <option value="choose">Choose a RAG Status</option>
+          <option value="all">All</option>
+          <option value="R">Red</option>
+          <option value="A">Amber</option>
+          <option value="G">Green</option>
+        </select>
+      </div>
+      <div class="border border-solid border-slate-400 p-1">
+        <div class="flex justify-between bg-orange-200 p-2 rounded-lg">
+          <div class="w-1/5 text-left font-bold">Project</div>
+          <div class="w-1/5 text-left font-bold">RAG Status</div>
+          <div class="w-1/5 text-left font-bold">Impediments</div>
+          <div class="w-1/5 text-left font-bold">Resource</div>
+          <div class="w-1/5 text-left font-bold">Actions</div>
+        </div>
+        <div id="results" class="mt-4 w-full">
+          <!-- Results will be displayed here -->
+          <p class="text-center">
+            Please select a RAG status to display the tabular report.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div class="bg-orange-200 p-1 rounded-lg">
+        <h3 class="text-lg font-bold text-black-400 text-center">
+          Governance - Council Updates
+        </h3>
+      </div>
+      <div class="border border-solid border-slate-400 p-1">
+        <p>- Projects in Red = <span id="rCount">0</span></p>
+        <p>- Projects in Amber = <span id="aCount">0</span></p>
+        <p>- Projects in Green = <span id="gCount">0</span></p>
+      </div>
+    </div>
+    <div>
+      <div class="bg-gray-200 p-1 rounded-lg">
+        <h3 class="text-lg font-bold text-black-400 text-center">
+          Project Overall Status
+        </h3>
+      </div>
+      <div class="border border-solid border-slate-400 p-1">
+        <canvas id="rag-status-chart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    let chart;
+
+    // Function to update the counts of projects in different RAG statuses
+    function updateCounts(data) {
+      let rCount = 0,
+        aCount = 0,
+        gCount = 0;
+      if (data) {
+        rCount = data.R;
+        aCount = data.A;
+        gCount = data.G;
+      }
+      $("#rCount").text(rCount);
+      $("#aCount").text(aCount);
+      $("#gCount").text(gCount);
+    }
+
+    // Function to render the chart
+    function renderChart(data) {
+      const ctx = document.getElementById("rag-status-chart").getContext("2d");
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Red", "Amber", "Green"],
+          datasets: [
+            {
+              data: [data.R, data.A, data.G],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: false, // Disable the legend
+            },
+            title: {
+              display: true,
+              text: 'Number of Projects',
+              font: {
+                size: 16,
+              },
+            },
+          },
+        },
+      });
+    }
+
+    // Fetch project counts and update counts and chart
+    function fetchAndUpdateCountsAndChart(selectedStatus = "all") {
+      $.ajax({
+        url: "/api/get_project_counts",
+        type: "GET",
+        data: { rag_status: selectedStatus },
+        success: function (data) {
+          updateCounts(data);
+          renderChart(data);
+        },
+        error: function (error) {
+          console.error("Error fetching project counts:", error);
+        },
+      });
+    }
+
+    // Initial chart and counts update
+    fetchAndUpdateCountsAndChart();
+
+    $("#rag-status").change(function () {
+      const selectedStatus = $(this).val();
+      $.ajax({
+        url: "/api/get_projects",
+        type: "GET",
+        data: { rag_status: selectedStatus },
+        success: function (data) {
+          // Display projects in a table
+          let results = ``;
+          for (const project of data) {
+            results += `
+              <div class="flex justify-between bg-white p-2 rounded-lg mt-2 border border-gray-300">
+                <div class="w-1/5 text-left break-words">${project.project_name}</div>
+                <div class="w-1/5 text-center break-words">${project.rag_status}</div>
+                <div class="w-1/5 text-left break-words">${project.impediments}</div>
+                <div class="w-1/5 text-left break-words">${project.resource}</div>
+                <div class="w-1/5 text-center break-words">
+                  <button class="delete-project bg-red-500 text-white p-1 rounded" data-project-id="${project.id}">Delete</button>
+                </div>
+              </div>`;
+          }
+          $("#results").html(results);
+          // Update counts and chart based on the selected RAG status
+          fetchAndUpdateCountsAndChart(selectedStatus);
+        },
+        error: function (error) {
+          console.error("Error fetching projects:", error);
+          $("#results").html("<p>Error fetching projects.</p>");
+        },
+      });
+    });
+
+    // Handle delete button click
+    $(document).on("click", ".delete-project", function () {
+      const projectId = $(this).data("project-id");
+      Swal.fire({
+        title: 'Are you sure?',
+        text: `Are you sure you want to delete project ID ${projectId}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "/api/delete_project",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ project_id: projectId }),
+            success: function (response) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: response.message,
+                showConfirmButton: false,
+                timer: 1500
+              });
+              // Reload projects based on current RAG status
+              $("#rag-status").trigger("change");
+            },
+            error: function (error) {
+              console.error("Error deleting project:", error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error deleting project.',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            },
+          });
+        }
+      });
+    });
+
+    $("#add-project-form").submit(function (event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      var list = formData.split("&");
+      var jsonData = {};
+      for (var i = 0; i < list.length; i++) {
+        jsonData[list[i].split("=")[0]] = decodeURIComponent(
+          list[i].split("=")[1],
+        );
+      }
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonData),
+      };
+      fetch("/api/add_project", requestOptions)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Added!',
+            text: data.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          // Clear the form after submission
+          $("#add-project-form")[0].reset();
+          // Reload projects based on current RAG status
+          $("#rag-status").trigger("change");
+        })
+        .catch((error) => {
+          console.error("Error adding project:", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error adding project.',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        });
+    });
+  });
+</script>
+{% endblock %}
