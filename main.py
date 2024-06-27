@@ -1,13 +1,15 @@
 import sqlite3
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
 
-from models import Project, db
+from models import db
+from routes import routes  # Import the blueprint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
 db.init_app(app)
 
+app.register_blueprint(routes)  # Register the blueprint
 
 @app.route("/")
 @app.route("/home")
@@ -43,7 +45,6 @@ def contacts():
 @app.route("/accelerators")
 def accelerators():
     return render_template('accelerators.html')
-
 
 @app.route("/data_entry")
 def dataentry():
@@ -227,83 +228,12 @@ def dataentry():
                            leave_types=leave_types)
 
 
-# Route to get projects based on RAG status
-@app.route('/api/get_projects', methods=['GET'])
-def get_projects():
-    rag_status = request.args.get('rag_status')
-    if rag_status == 'all':
-        projects = Project.query.all()
-    else:
-        projects = Project.query.filter_by(rag_status=rag_status).all()
-    return jsonify([project.to_dict() for project in projects])
-
-
-# Route to add a new project
-@app.route('/api/add_project', methods=['POST'])
-def add_project():
-    data = request.get_json()
-    new_project = Project(project_name=data['project'],
-                          rag_status=data['status'],
-                          impediments=data.get('impediments', ''),
-                          resource=data['resource'])
-    db.session.add(new_project)
-    db.session.commit()
-    return jsonify({'message': 'Project added successfully'}), 201
-
-
-# Route to delete a project
-@app.route('/api/delete_project', methods=['POST'])
-def delete_project():
-    data = request.get_json()
-    project_id = data['project_id']
-    project = Project.query.get(project_id)
-    if project:
-        db.session.delete(project)
-        db.session.commit()
-        return jsonify({'message': 'Project deleted successfully'}), 200
-    else:
-        return jsonify({'message': 'Project not found'}), 404
-
-
-# Route to get project counts
-@app.route('/api/get_project_counts', methods=['GET'])
-def get_project_counts():
-    # Get the rag_status parameter from the request, default to 'all'
-    rag_status = request.args.get('rag_status', 'all')
-
-    # Define a mapping from status to filters
-    status_filters = {
-        'R': Project.query.filter_by(rag_status='R').count(),
-        'A': Project.query.filter_by(rag_status='A').count(),
-        'G': Project.query.filter_by(rag_status='G').count(),
-    }
-
-    # Query to count projects based on the rag_status parameter
-    if rag_status == 'all':
-        counts = status_filters
-    elif rag_status == 'R':
-        counts = {'R': status_filters['R']}
-    elif rag_status == 'A':
-        counts = {'A': status_filters['A']}
-    elif rag_status == 'G':
-        counts = {'G': status_filters['G']}
-    else:
-        return jsonify({'error': 'Invalid rag_status parameter'}), 400
-
-    return jsonify(counts)
-
-
 @app.route('/gip', methods=['GET', 'POST'])
 def gip():
     bd = request.get_json()
     print(bd)
     return bd
 
-
-# if __name__ == '__main__':
-#     with app.app_context():
-#         db.create_all()
-#     app.run(debug=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
