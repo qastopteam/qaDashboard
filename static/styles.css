@@ -1,39 +1,126 @@
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-nav {
+.pagination-container {
   display: flex;
-  justify-content: space-around;
-  background-color: #e6e6e6;
-  padding: 10px;
-  border: 1px solid #ccc;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-nav a {
-  text-decoration: none;
-  color: black;
-  padding: 5px 10px;
+.pagination-info {
+  text-align: right;
+  margin-top: 5px;
+  font-size: 14px;
+  left: 380px;
+  bottom: -20px;
+  position: relative;
+}
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #c2410c; /* bg-orange-700 equivalent */
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-nav a:hover {
-  background-color: #ccc;
+.chatbot-container {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    width: 350px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-main {
-  display: grid;
-  gap: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
+.chatbot-header {
+    background-color: #c2410c; /* bg-orange-700 equivalent */
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Add other styles here */
+.close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chatbot-body {
+    height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.send-button {
+    background-color: #c2410c; /* bg-orange-700 equivalent */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.bot-message, .user-message, option-button{
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;  /*Ensures long words break to the next line */
+    overflow-wrap: break-word;  /*Ensures long words break to the next line */
+}
+
+.bot-message {
+    background-color: #FED7AA; /* bg-orange-700 equivalent */
+}
+.option-button {
+    background-color: #FED7AA; /* Light orange for option buttons */
+    margin: 5px 0; /* Margin for spacing between option buttons */
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    /* width: 100%;  */
+}
+.user-message {
+    background-color: #E5E7EB;
+    text-align: right;
+    justify-content: flex-end;
+}
+.bot-icon, .user-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.user-icon {
+    margin-left: 10px;
+    margin-right: 0;
+}
+.message-content {
+    flex: 1;
+    white-space: normal; /* Ensures text wraps within the container */
+    word-break: break-all;
+}

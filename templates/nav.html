@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
       <!-- SweetAlert2 JS -->
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -20,21 +21,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <style>
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .pagination-info {
-            text-align: right;
-            margin-top: 5px;
-            font-size: 14px;
-            left: 200px;
-            bottom: -20px;
-            position: relative;
-        }
-        
         .sidebar-collapsed {
             width: 7rem;
         }
@@ -220,5 +206,42 @@
         });
     });
 </script>
+    <!-- Chatbot widget -->
+    <div id="chatbot-icon" class="chatbot-icon">
+        💬
+    </div>
+    <div id="chatbot" class="chatbot-container hidden">
+        <div class="chatbot-header">
+            <span>Chat with us!</span>
+            <button id="close-chatbot" class="close-button">x</button>
+        </div>
+        <div class="chatbot-body">
+            <!-- Initial default message and options -->
+            <div class="bot-message">
+                <img src="{{ url_for('static', filename='images/bot-icon.png') }}"  alt="Bot" class="bot-icon">Hi, How can I help you?
+            </div>
+            <button class="option-button" onclick="handleOptionClick('Governance')">Governance</button>
+            <button class="option-button" onclick="handleOptionClick('Projects')">Projects</button>
+            <button class="option-button" onclick="handleOptionClick('Resources')">Resources</button>
+            <button class="option-button" onclick="handleOptionClick('Accelerators')">Accelerators</button>
+            <button class="option-button" onclick="handleOptionClick('Data Entry')">Data Entry</button>
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Type your message...">
+            <button id="send-message" class="send-button">⏎</button>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script>
+        const userIconUrl = "{{ url_for('static', filename='images/user-icon.png') }}";
+        const botIconUrl = "{{ url_for('static', filename='images/bot-icon.png') }}";
+    </script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <script>
+        // Initialize the chatbot
+        document.addEventListener("DOMContentLoaded", function() {
+            loadChatbot();
+        });
+    </script>
 </body>
 </html>

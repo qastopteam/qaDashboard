@@ -1,15 +1,18 @@
 import sqlite3
 
 from flask import Flask, render_template, request
-
+# from govroutes import govroutes
 from models import db
-from routes import routes  # Import the blueprint
+from routes import proutes  # Import the blueprint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
 db.init_app(app)
 
-app.register_blueprint(routes)  # Register the blueprint
+app.register_blueprint(proutes)  # Register the blueprint
+
+# app.register_blueprint(govroutes)
+
 
 @app.route("/")
 @app.route("/home")
