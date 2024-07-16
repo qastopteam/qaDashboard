@@ -1,371 +1,915 @@
 {% extends "nav.html" %} {% block title %}Home{% endblock %} {% block content %}
 
-  <head>
-
-
-    <div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
-      <h1 class="text-2xl font-bold inline-block">Governance</h1>
+<head>
+    <div
+        class="w-full bg-white text-black text-left border-b-2 border-gray-300"
+    >
+        <h1 class="text-2xl font-bold inline-block">Governance</h1>
     </div>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dropdown Selection</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!---Horizontal Graph CSS-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horizontal Bar Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!--Drop down Styling--->
+    <style>
+        .scrollable-container {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .total-box {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+        }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+        }
+        .table-header .header-item {
+            width: 50%;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .project-item .project-name {
+            width: 50%;
+            text-align: left;
+        }
+        .project-item .resource-count {
+            width: 80%;
+            text-align: right;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px; /* Adjusted to a fixed width */
+            width: 100%; /* Ensures it takes full width of its parent */
+            margin: 0 auto; /* Centers the container horizontally */
+        }
+    </style>
+</head>
 
-  </head>
-
-  <body style="background-color:;">
-
-  <style>
-      /* Custom CSS for Scrollbar */
-      .scrollable-container {
-          height: 150px; /* Adjust height as needed */
-          overflow-y: auto;
-          border: 1px solid #ccc; /* Optional: add border for clarity */
-          border-radius: 4px; /* Optional: add border radius */
-      }
-  </style>
-
-
-
-
+<body style="background-color:">
+    <style>
+        /* Custom CSS for Scrollbar */
+        .scrollable-container {
+            height: 150px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc; /* Optional: add border for clarity */
+            border-radius: 4px; /* Optional: add border radius */
+        }
+    </style>
 
     <!--Client Pearner and Governance Horizontally Starts--->
 
-    <div class="flex gap-4 p-3">
-    <div class=" w-75">
-      <div class="bg-orange-200 p-1">
-        <h3 class="text-lg font-bold text-black-400"> Client Partners </h3>
-      </div>
-      <div class="p-3 bg-white bg-info bg-opacity-10 border border-start-0 rounded-end">
-        <div>
-          The Quality engineering services are rendered to 16 customers that includes 68 resources on the various projects of the client partners.
+    <div class="w-100">
+        <div class="bg-orange-200 p-1">
+            <h3 class="text-lg font-bold text-black-400">Client Partners</h3>
         </div>
-      </div>
-    </div>
-
-    <div class=" w-55">
-      <div class="bg-orange-200 p-1">
-        <h3 class="text-lg font-bold text-black-400"> Governance - Council Updates </h3>
-      </div>
-      <div class="bg-white border border-solid border-slate-400 p-1">
-        <p> -> The practice hits client partner count to 17.</p>
-        <p>-> The bench resources head count is always kept under 10.</p>
-      </div>
-    </div>
-  </div>
-
-  <!--Client Pearner and Governance Horizontally Ends--->
-
-    <!--Table Start--->    
-    <!-- Main Content Section -->
-  <div class="container-fluid">
-    <div class="flex gap-3 p-2">
-    <!-- Right Section (Client Name and Resources Table) -->
-      <div class="col-lg-3">
-        <table border="1">
-          <thead>
-            <tr>
-              <th class="bg-orange-200 p-1">Client Name</th>
-              <th class="bg-orange-200 p-1">Resources</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Accuray</td>
-              <td style="text-align: center;">1</td>
-          </tr>
-          <tr>
-              <td>Arch Capital</td>
-              <td style="text-align: center;">1</td>
-          </tr>
-          <tr>
-              <td>Carrier</td>
-              <td style="text-align: center;">2</td>
-          </tr>
-          <tr>
-              <td>Mars</td>
-              <td style="text-align: center;">5</td>
-          </tr>
-          <tr>
-              <td>Mcdonalds</td>
-              <td style="text-align: center;">3</td>
-          </tr>
-          <tr>
-              <td>Merck</td>
-              <td style="text-align: center;">4</td>
-          </tr>
-          <tr>
-              <td>Nationwide</td>
-              <td style="text-align: center;">3</td>
-          </tr>
-          <tr>
-              <td>Northen Trust</td>
-              <td style="text-align: center;">1</td>
-          </tr>
-          <tr>
-              <td>Pepsico</td>
-              <td style="text-align: center;">22</td>
-          </tr>
-          <tr>
-              <td>Polen</td>
-              <td style="text-align: center;">2</td>
-          </tr>
-          <tr>
-              <td>Practice - Bench</td>
-              <td style="text-align: center;">8</td>
-          </tr>
-          <tr>
-              <td>Prologis</td>
-              <td style="text-align: center;">5</td>
-          </tr>
-          <tr>
-              <td>Ptp</td>
-              <td style="text-align: center;">1</td>
-          </tr>
-          <tr>
-              <td>Quantum Energy Partners</td>
-              <td style="text-align: center;">2</td>
-          </tr>
-          <tr>
-              <td>T-Mobile</td>
-              <td style="text-align: center;">5</td>
-          </tr>
-          <tr>
-              <td>Tata Steel</td>
-              <td style="text-align: center;">2</td>
-          </tr>
-          </tbody>
-        </table>      
-      </div>
-      <div>
-        <canvas id="myChart"></canvas>
-      </div>
-      <div class="col-lg-4">
-        <div>
-            <div class="bg-orange-200 p-1 rounded-lg flex justify-between items-center">
-                <h2 class="text-lg font-bold text-black-400">Select Project</h2>
-                <select id="accelerators" name="accelerators" class="p-2 border border-gray-300 rounded">
-                    <option value="All">All</option>
-                    <option value="Link1">Accuray</option>
-                    <option value="Link2">Arch Capital</option>
-                    <option value="Link3">Carrier</option>
-                    <option value="Link4">Mars</option>
-                    <option value="Link5">Mcdonalds</option>
-                    <option value="Link6">Merck</option>
-                    <option value="Link7">Nationwide</option>
-                    <option value="Link8">Northen Trust</option>
-                    <option value="Link9">Pepsico</option>
-                    <option value="Link10">Polen</option>
-                    <option value="Link11">Practice - Bench</option>
-                    <option value="Link12">Prologis</option>
-                    <option value="Link13">Ptp</option>
-                    <option value="Link14">Quantum Energy Partners</option>
-                    <option value="Link15">T-Mobile</option>
-                    <option value="Link16">Tata Steel</option>
-                </select>
+        <div
+            class="p-3 bg-white bg-info bg-opacity-10 border border-start-0 rounded-end"
+        >
+            <div>
+                The Quality engineering services are rendered to 16 customers
+                that includes 68 resources on the various projects of the client
+                partners.
             </div>
-            <div class="flex mt-4">
-                <div class="w-full border border-solid border-slate-400 p-1">
-                    <div class="flex justify-between bg-orange-200 p-2 rounded-lg">
-                        <div class="w-1/2 text-center font-bold text-black">Project</div>
-                        <div class="w-1/2 text-center font-bold text-black">Resources</div>
+        </div>
+
+        <!--div class=" w-30">
+              <div class="bg-orange-200 p-1">
+                <h3 class="text-lg font-bold text-black-400"> Governance - Council Updates </h3>
+              </div>
+              <div class="bg-white border border-solid border-slate-400 p-1">
+                <p> -> The practice hits client partner count to 17.</p>
+                <p>-> The bench resources head count is always kept under 10.</p>
+              </div>
+            </div-->
+    </div>
+
+    <div class="w-30">
+        <div class="bg-orange-200 p-1">
+            <h3 class="text-lg font-bold text-black-400">
+                Governance - Council Updates
+            </h3>
+        </div>
+        <div class="bg-white border border-solid border-slate-400 p-1">
+            <p>-> The practice hits client partner count to 17.</p>
+            <p>-> The bench resources head count is always kept under 10.</p>
+        </div>
+    </div>
+
+    <!--Client Pearner and Governance Horizontally Ends--->
+
+    <!--Table Start--->
+    <!-- Main Content Section -->
+
+    <div class="container-fluid">
+        <div class="flex gap-1 p-2">
+            <!-- Right Section (Client Name and Resources Table) -->
+            <div class="col-lg-8">
+                <!-- Resource Spread Sheet -->
+                <div class="col-lg-10 d-flex align-items-center justify-center">
+                    <div
+                        id="spreadChartContainer"
+                        style="width: 400%; height: 450px"
+                    >
+                        <canvas
+                            id="spreadChart"
+                            style="width: 100%; height: 100%"
+                        ></canvas>
                     </div>
-                    <div id="results" class="mt-1 scrollable-container">
-                        <!-- Results will be displayed here -->
+                    <!---table border="1">
+                  <thead>
+                    <tr>
+                      <th class="bg-orange-200 p-1">Client Name</th>
+                      <th class="bg-orange-200 p-1">Resources</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Accuray</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Arch Capital</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Carrier</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  <tr>
+                      <td>Mars</td>
+                      <td style="text-align: center;">5</td>
+                  </tr>
+                  <tr>
+                      <td>Mcdonalds</td>
+                      <td style="text-align: center;">3</td>
+                  </tr>
+                  <tr>
+                      <td>Merck</td>
+                      <td style="text-align: center;">4</td>
+                  </tr>
+                  <tr>
+                      <td>Nationwide</td>
+                      <td style="text-align: center;">3</td>
+                  </tr>
+                  <tr>
+                      <td>Northen Trust</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Pepsico</td>
+                      <td style="text-align: center;">22</td>
+                  </tr>
+                  <tr>
+                      <td>Polen</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  <tr>
+                      <td>Practice - Bench</td>
+                      <td style="text-align: center;">8</td>
+                  </tr>
+                  <tr>
+                      <td>Prologis</td>
+                      <td style="text-align: center;">5</td>
+                  </tr>
+                  <tr>
+                      <td>Ptp</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Quantum Energy Partners</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  <tr>
+                      <td>T-Mobile</td>
+                      <td style="text-align: center;">5</td>
+                  </tr>
+                  <tr>
+                      <td>Tata Steel</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  </tbody>
+                </table--->
+                </div>
+                <!---Space b/w table-->
+                <!--div style="width: 10px; margin: 0 auto;">
+              <canvas id="myChart"></canvas>
+            </div---->
+            </div>
+
+            <!-- Choose the client drop down -->
+            <!--Drop down content--->
+            <div class="container mt-9">
+                <div class="bg-white-200 p-3 rounded-lg mb-3">
+                    <!--h2 class="text-lg font-bold text-black-400 mb-3">Governance</h2-->
+                    <div
+                        class="bg-orange-200 p-6 rounded-lg flex justify-between items-center mb-3"
+                    >
+                        <h2 class="text-lg font-bold text-black-800">
+                            Choose the Client
+                        </h2>
+                        <select
+                            id="accelerators"
+                            name="accelerators"
+                            class="p-2 border border-gray-300 rounded"
+                        >
+                            <option value="">--Select--</option>
+                            <option value="All">All</option>
+                            <option value="Link1">Accuray</option>
+                            <option value="Link2">Arch Capital</option>
+                            <option value="Link3">Carrier</option>
+                            <option value="Link4">Mars</option>
+                            <option value="Link5">Mcdonalds</option>
+                            <option value="Link6">Merck</option>
+                            <option value="Link7">Nationwide</option>
+                            <option value="Link8">Northen Trust</option>
+                            <option value="Link9">Pepsico</option>
+                            <option value="Link10">Polen</option>
+                            <option value="Link11">Practice - Bench</option>
+                            <option value="Link12">Prologis</option>
+                            <option value="Link13">Ptp</option>
+                            <option value="Link14">
+                                Quantum Energy Partners
+                            </option>
+                            <option value="Link15">T-Mobile</option>
+                            <option value="Link16">Tata Steel</option>
+                        </select>
+                    </div>
+                    <!-- Total Number of Projects and Resources -->
+                    <div class="total-box">
+                        <div class="bg-orange-200 p-2 rounded-lg mb-2">
+                            <h6>
+                                Total Number of Projects:
+                                <span id="totalResources">0</span>
+                            </h6>
+                        </div>
+                        <div class="bg-orange-200 p-2 rounded-lg">
+                            <h6>
+                                Total Number of Resources:
+                                <span id="totalProjects">0</span>
+                            </h6>
+                        </div>
+                    </div>
+                    <!-- Projects and Resources -->
+                    <div class="flex mb-3">
+                        <div
+                            class="w-full border border-solid border-slate-400 p-1"
+                        >
+                            <div class="table-header">
+                                <div class="header-item bg-orange-200">
+                                    Projects
+                                </div>
+                                <div class="header-item bg-orange-200">
+                                    Resources
+                                </div>
+                            </div>
+                            <div id="results" class="mt-1 scrollable-container">
+                                <!-- Results will be displayed here -->
+                                <div class="text-center text-gray-500">
+                                    <h4>
+                                        Choose the client to list the Projects
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- JavaScript for Resource Spread Sheet -->
+            <script>
+                // Data for the horizontal bar chart
+                var projectsData = {
+                    labels: [
+                        "Accuray",
+                        "Arch Capital",
+                        "Carrier",
+                        "Mars",
+                        "Mcdonalds",
+                        "Merck",
+                        "Nationwide",
+                        "Northen Trust",
+                        "Pepsico",
+                        "Polen",
+                        "Practice - Bench",
+                        "Prologis",
+                        "Ptp",
+                        "QEP",
+                        "T-Mobile",
+                        "Tata Steel",
+                    ],
+                    datasets: [
+                        {
+                            label: "Number of Resources",
+                            data: [
+                                1, 1, 2, 5, 3, 4, 3, 1, 22, 2, 8, 5, 1, 2, 5, 2,
+                            ], // Number of resources for each project
+                            backgroundColor: [
+                                "rgba(0, 102, 0, 0.7)", // Red
+                                "rgba(76, 156, 0, 0.7)", // Blue
+                                "rgba(0, 153, 76, 0.7)", // Yellow
+                                "rgba(102, 204, 0, 0.7)", // Green
+                                "rgba(0, 204, 0, 0.7)",
+                                "rgba(0, 204, 102, 0.7)",
+                                "rgba(128, 255, 0, 0.7)",
+                                "rgba(0, 255, 0, 0.7)",
+                                "rgba(0, 255, 128, 0.7)", // Red
+                                "rgba(153, 255, 51, 0.7)", // Blue
+                                "rgba(178, 255, 102, 0.7)", // Yellow
+                                "rgba(204, 255, 153, 0.7)", // Green
+                                "rgba(153, 255, 153, 0.7)",
+                                "rgba(153, 255, 204, 0.7)",
+                                "rgba(229, 255, 204, 0.7)",
+                                "rgba(204, 255, 204, 0.7)", // Purple
+                            ],
+                            borderColor: [
+                                "rgba(0, 102, 0, 1)", // Red
+                                "rgba(76, 156, 0, 1)", // Blue
+                                "rgba(0, 153, 76, 1)", // Yellow
+                                "rgba(102, 204, 0, 1)", // Green
+                                "rgba(0, 204, 0, 1)",
+                                "rgba(0, 204, 102, 1)",
+                                "rgba(128, 255, 0, 1)",
+                                "rgba(0, 255, 0, 1)",
+                                "rgba(0, 255, 128, 1)", // Red
+                                "rgba(153, 255, 51, 1)", // Blue
+                                "rgba(178, 255, 102, 1)", // Yellow
+                                "rgba(204, 255, 153, 1)", // Green
+                                "rgba(153, 255, 153, 1)",
+                                "rgba(153, 255, 204, 1)",
+                                "rgba(229, 255, 204, 1)",
+                                "rgba(204, 255, 204, 1)", // Purple
+                            ],
+                            borderWidth: 1,
+                        },
+                    ],
+                };
+
+                // Chart options
+                var chartOptions = {
+                    indexAxis: "y",
+                    plugins: {
+                        legend: {
+                            display: false, // Hide legend for simplicity
+                        },
+                        title: {
+                            display: true,
+                            text: "RESOURCE SPREAD", // Chart title
+                        },
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true, // Start x-axis at zero
+                        },
+                    },
+                };
+
+                // Get the canvas element for Resource Spread Sheet
+                var ctxSpread = document
+                    .getElementById("spreadChart")
+                    .getContext("2d");
+
+                // Create the chart for Resource Spread Sheet
+                var spreadChart = new Chart(ctxSpread, {
+                    type: "bar",
+                    data: projectsData,
+                    options: chartOptions,
+                });
+            </script>
         </div>
-      </div>
-      <!-- div 3 -->
-    </div> 
+    </div>
 
-  </div>
+    <div class="row mt-4">
+        <!-- Left Section (Client Name and Resources Table) -->
 
+        <!-- Resource Release Trend -->
+        <div class="container">
+            <h3>Resource Release Trend for the Year 2024</h3>
+            <label for="quarterSelect">Select Quarter:</label>
+            <select id="quarterSelect" onchange="updateChart()">
+                <option value="Q1">Q1</option>
+                <option value="Q2">Q2</option>
+                <option value="Q3">Q3</option>
+                <option value="Q4">Q4</option>
+            </select>
+            <div
+                id="chartContainer"
+                class="d-flex"
+                style="width: 100%; height: 400px"
+            >
+                <canvas
+                    id="barChart"
+                    style="width: 1000px; height: 80%"
+                ></canvas>
+            </div>
+        </div>
 
+        <!-- JavaScript for Resource Release Trend -->
+        <script>
+            const projectData = {
+                Q1: {
+                    months: ["January", "February", "March"],
+                    data: [{ project: "Mars", values: ["", "", 5] }],
+                },
+                Q2: {
+                    months: ["April", "May", "June"],
+                    data: [
+                        { project: "Nation Wide", values: ["", 3, ""] },
+                        { project: "Pepsico", values: ["", 22, ""] },
+                        { project: "Accuray", values: ["", "", 1] },
+                        { project: "Arch Capital", values: ["", "", 1] },
+                        { project: "Carrier", values: ["", "", 2] },
+                        { project: "MC Donalds", values: ["", "", 3] },
+                        { project: "Mercks", values: ["", "", 4] },
+                        { project: "Northern Trust", values: ["", "", 1] },
+                        { project: "Polen", values: ["", "", 2] },
+                        { project: "PTP", values: ["", "", 1] },
+                        {
+                            project: "Quantam energy Partners",
+                            values: ["", "", 2],
+                        },
+                        { project: "TATA Steels", values: ["", "", 2] },
+                        { project: "T-Mobile", values: ["", "", 5] },
+                    ],
+                },
+                Q3: {
+                    months: ["July", "August", "September"],
+                    data: [],
+                },
+                Q4: {
+                    months: ["October", "November", "December"],
+                    data: [
+                        { project: "Practise-Bench", values: ["", "", 8] },
+                        { project: "Prologis", values: ["", "", 5] },
+                    ],
+                },
+            };
 
+            const ctx = document.getElementById("barChart").getContext("2d");
+            let barChart;
 
+            function createChart(quarter) {
+                const months = projectData[quarter].months;
+                const datasets = projectData[quarter].data.map(
+                    (project, index) => ({
+                        label: project.project,
+                        data: project.values,
+                        backgroundColor: `hsl(120, 100%, ${30 + index * 10}%)`,
+                    }),
+                );
 
-  <script>
-    var xValues = ["Accuray", "Arch Capital", "Carrier", "Mars", "Mcdonalds", "Merck", "Nationwide", "Northen Trust", "Pepsico", "Polen", "Practice - Bench", "Prologis", "Ptp", "Quantum Energy Partners", "T-Mobile", "Tata Steel"];
-    var yValues = [1, 1, 2, 5, 3, 4, 3, 1, 22, 2, 8, 5, 1, 2, 5, 2];
-    var barColors = ["#00FF00", "green", "orange", "orange", "brown", "#DEB887", "#5F9EA0", "#FFF8DC", "#00BFFF", "#8B008B", "#FF8C00", "#FF00FF", "#8B4513", "#8FBC8F", "#FA8072", "#B8860B"];
+                if (barChart) {
+                    barChart.destroy();
+                }
 
-    new Chart("myChart", {
-      type: "horizontalBar", // Changed to horizontalBar
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        indexAxis: 'y', // Display bars horizontally
-        plugins: {
-          legend: {
-            display: false
-          },
-          title: {
-            display: true,
-            text: "QE Resource Spread"
-          }
+                barChart = new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: months,
+                        datasets: datasets,
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                min: 0,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: "",
+                                },
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: "Resources",
+                                },
+                            },
+                        },
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false,
+                                position: "top",
+                            },
+                            tooltip: {
+                                mode: "index",
+                                intersect: false,
+                            },
+                        },
+                    },
+                });
+            }
+
+            function updateChart() {
+                const quarter = document.getElementById("quarterSelect").value;
+                createChart(quarter);
+            }
+
+            // Initialize chart with Q1 data
+            window.onload = function () {
+                createChart("Q1");
+            };
+        </script>
+    </div>
+
+    <!-- Bootstrap JavaScript and Tailwind CSS (optional, for utility classes) -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.js"></script>
+
+    <!-- JavaScript for Dynamic Content -->
+    <script>
+        const data = {
+            Link1: [
+                { Accelerator: "Accuracy", Direct: "", SPOC: "", NEW: "1" },
+            ],
+            Link2: [
+                {
+                    Accelerator: "Arch Incurance Power BI Stuff Aug",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link3: [
+                {
+                    Accelerator: "Japan Sf Landing Layer",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+            ],
+            Link4: [
+                {
+                    Accelerator: "Mars_Global_Mw_Rtm Fast_2023_Pahse1",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "3",
+                },
+                {
+                    Accelerator:
+                        "Mars_Global_Pet_Petcare R&D Digital Ecosystem_2023",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Mars_Us_Mw_Fetch Dashboard Enhancement_2023",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link5: [
+                {
+                    Accelerator:
+                        "Mcdonalds_Conjoint,Engine Refreshes & R&D Extensions",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "3",
+                },
+            ],
+            Link6: [
+                {
+                    Accelerator: "Merck_Clearsight_Forecasting",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Merck_Forecast Demands_Q4 & Q1",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                { Accelerator: "Merck_Pie", Direct: "", SPOC: "", NEW: "1" },
+                {
+                    Accelerator: "Merck_Sotatercept_ Launch Dashboard",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link7: [
+                {
+                    Accelerator: "Nationwide_Data_Curation_Service",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "3",
+                },
+            ],
+            Link8: [
+                {
+                    Accelerator: "Northern Trust",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link9: [
+                {
+                    Accelerator: "Ecomm Inventory Optimization",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Cgf_Compass",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator:
+                        "Pepsico_Cgf_Potato Sourcing Matrix Automation",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Cto Cv Pepiris",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+                {
+                    Accelerator: "Pepsico_Cto Cv_Label Right",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Data Foundation_Fp&A",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Hilton_Asset Tracker Automation",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Maw Rhythm_Hotspots",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_P-Rec_Ingestion",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+                {
+                    Accelerator: "Pepsico_Vision Sales_Automation",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Warehouse Advanced PMI",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Warehouse Health Check_2023",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+                {
+                    Accelerator: "Pepsico_Warehouse Standard",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+                {
+                    Accelerator: "Pepsico_Wms Wvolution_2023",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Pepsico_Workflow Transformer_2023",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link10: [
+                {
+                    Accelerator: "Polen Capital Management_De and Bi Program",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+            ],
+            Link11: [{ Accelerator: "Bench", Direct: "", SPOC: "", NEW: "8" }],
+            Link12: [
+                {
+                    Accelerator: "Prologis_Coo_KPI_Dashboard_Retainer",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Prologis_Lease_Reconciliation_Tool_Testing",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Prologis_Quality_Engineering_T&M",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Prologis_Starter Pack_Mng_Retainer",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+            ],
+            Link13: [
+                {
+                    Accelerator:
+                        "Ptp01 – Digital Management Command Center (Dmcc)",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Ptp01 – Gartner-Furnished Credit Enhancement",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Ptp01 – Gartner-Managed It Sourcing Market",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                {
+                    Accelerator: "Ptp01 – Supplier Performance Risk",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link14: [
+                {
+                    Accelerator:
+                        "Quantum Energy Partners_Economics, Politics And Public Policy",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+            ],
+            Link15: [
+                {
+                    Accelerator:
+                        "T-Mobile_Contract Lifecycle Management  & Templates",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+            ],
+            Link16: [
+                {
+                    Accelerator: "The Navigator Digital Supply Chain Audit",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                { Accelerator: "Tata Steel", Direct: "", SPOC: "", NEW: "3" },
+            ],
+            All: [
+                { Accelerator: "Accuray", Direct: "", SPOC: "", NEW: "1" },
+                { Accelerator: "Arch Capital", Direct: "", SPOC: "", NEW: "1" },
+                { Accelerator: "Carrier", Direct: "", SPOC: "", NEW: "2" },
+                { Accelerator: "Mars", Direct: "", SPOC: "", NEW: "3" },
+                { Accelerator: "Mcdonalds", Direct: "", SPOC: "", NEW: "3" },
+                { Accelerator: "Merck", Direct: "", SPOC: "", NEW: "4" },
+                { Accelerator: "Nationwide", Direct: "", SPOC: "", NEW: "3" },
+                {
+                    Accelerator: "Northen Trust",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "1",
+                },
+                { Accelerator: "Pepsico", Direct: "", SPOC: "", NEW: "22" },
+                { Accelerator: "Polen", Direct: "", SPOC: "", NEW: "2" },
+                {
+                    Accelerator: "Practice - Bench",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "8",
+                },
+                { Accelerator: "Prologis", Direct: "", SPOC: "", NEW: "4" },
+                { Accelerator: "Ptp", Direct: "", SPOC: "", NEW: "4" },
+                {
+                    Accelerator: "Quantum Energy Partners",
+                    Direct: "",
+                    SPOC: "",
+                    NEW: "2",
+                },
+                { Accelerator: "T-Mobile", Direct: "", SPOC: "", NEW: "1" },
+                { Accelerator: "Tata Steel", Direct: "", SPOC: "", NEW: "3" },
+            ],
+        };
+
+        const selectElement = document.getElementById("accelerators");
+        const resultsContainer = document.getElementById("results");
+        const totalProjectsElement = document.getElementById("totalProjects");
+        const totalResourcesElement = document.getElementById("totalResources");
+
+        selectElement.addEventListener("change", (event) => {
+            const selectedValue = event.target.value;
+            const projects = data[selectedValue];
+
+            if (projects) {
+                const html = projects
+                    .map(
+                        (project) => `
+                          <div class="project-item">
+                              <div class="project-name">${project.Accelerator}</div>
+                              <div class="resource-count">${project.NEW}</div>
+                          </div>
+                      `,
+                    )
+                    .join("");
+
+                resultsContainer.innerHTML = html;
+
+                // Calculate total number of projects
+                const totalProjects = projects.reduce(
+                    (total, project) => total + parseInt(project.NEW),
+                    0,
+                );
+                totalProjectsElement.textContent = totalProjects;
+
+                // Calculate total number of resources
+                const totalResources = projects.length;
+                totalResourcesElement.textContent = totalResources;
+            }
+        });
+    </script>
+    <style>
+        /* Custom CSS for Scrollbar */
+        .scrollable-container {
+            height: 150px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc; /* Optional: add border for clarity */
+            border-radius: 4px; /* Optional: add border radius */
         }
-      }
-    });
-  </script>
-  <script>
-    var xValues = ["Accuray", "Arch Capital", "Carrier", "Mars", "Mcdonalds", "Merck", "Nationwide", "Northen Trust", "Pepsico", "Polen", "Practice - Bench", "Prologis", "Ptp", "QEP", "T-Mobile", "Tata Steel"];
-    var yValues = [1, 1, 2, 5, 3, 4, 3, 1, 22, 2, 8, 5, 1, 2, 5, 2];
-    var barColors = ["#00FF00", "green", "orange", "orange", "brown", "#DEB887", "#5F9EA0", "#FFF8DC", "#00BFFF", "#8B008B", "#FF8C00", "#FF00FF", "#8B4513", "#8FBC8F", "#FA8072", "#B8860B"];
+    </style>
 
-    new Chart("myChart", {
-      type: "horizontalBar", // Changed to horizontalBar
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        indexAxis: 'y', // Display bars horizontally
-        plugins: {
-          legend: {
-            display: false
-          },
-          title: {
-            display: true,
-            text: "Resource graph" // <-- Your title here
-          }
-        }
-      }
-    });
-          </script>
-
-
-         <!-- Left Section (Projects and Resources Table) -->
-
-      </div>
-  </div>
-
-  <!-- Bootstrap JavaScript and Tailwind CSS (optional, for utility classes) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.js"></script>
-
-  <!-- JavaScript for Dynamic Content -->
-  <script>
-      const data = {
-          'Link1': [{ Accelerator: 'Accuracy', Direct: '', SPOC: '', NEW: '1' }],
-          'Link2': [{ Accelerator: 'Arch Incurance Power BI Stuff Aug', Direct: '', SPOC: '', NEW: '1'}],
-          'Link3': [{ Accelerator: 'Japan Sf Landing Layer', Direct: '', SPOC: '', NEW: '2'}],
-          'Link4': [
-              { Accelerator: 'Mars_Global_Mw_Rtm Fast_2023_Pahse1', Direct: '', SPOC: '', NEW: '3'},
-              { Accelerator: 'Mars_Global_Pet_Petcare R&D Digital Ecosystem_2023', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Mars_Us_Mw_Fetch Dashboard Enhancement_2023', Direct: '', SPOC: '', NEW: '1'}
-          ],
-          'Link5': [{ Accelerator: 'Mcdonalds_Conjoint,Engine Refreshes & R&D Extensions', Direct: '', SPOC: '', NEW: '3'}],
-          'Link6': [
-              { Accelerator: 'Merck_Clearsight_Forecasting', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Merck_Forecast Demands_Q4 & Q1', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Merck_Pie', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Merck_Sotatercept_ Launch Dashboard', Direct: '', SPOC: '', NEW: '1'}
-          ],
-          'Link7': [{ Accelerator: 'Nationwide_Data_Curation_Service', Direct: '', SPOC: '', NEW: '3'}],
-          'Link8': [{ Accelerator: 'Northern Trust', Direct: '', SPOC: '', NEW: '1'}],
-          'Link9': [
-              { Accelerator: 'Ecomm Inventory Optimization', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Cgf_Compass', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Cgf_Potato Sourcing Matrix Automation', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Cto Cv Pepiris', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'Pepsico_Cto Cv_Label Right', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Data Foundation_Fp&A', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Hilton_Asset Tracker Automation', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Maw Rhythm_Hotspots', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_P-Rec_Ingestion', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'Pepsico_Vision Sales_Automation', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Warehouse Advanced PMI', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Warehouse Health Check_2023', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'Pepsico_Warehousing Standard', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'Pepsico_Wms Evolution_2023', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico_Workflow Transformer_2023', Direct: '', SPOC: '', NEW: '1'}
-          ],
-          'Link10': [
-              { Accelerator: 'Polen', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Polen GSA 2.0 Atoiv', Direct: '', SPOC: '', NEW: '1'}
-          ],
-          'Link11': [
-              { Accelerator: 'Bench', Direct: '', SPOC: '', NEW: '8'}
-          ],
-          'Link12': [
-              { Accelerator: 'Prologis Us', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Prologis_Us Jd System Test Plan', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Prologis_Us_Lease_Reconciliation_Tool', Direct: '', SPOC: '', NEW: '1'}
-          ],
-          'Link13': [
-              { Accelerator: 'Ptp01 – Digital Management Command Center (Dmcc)', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Ptp01 – Gartner-Furnished Credit Enhancement', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Ptp01 – Gartner-Managed It Sourcing Market', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Ptp01 – Supplier Performance Risk', Direct: '', SPOC: '', NEW: '1'}
-          ],
-          'Link14': [{ Accelerator: 'Quantum Energy Partners_Economics, Politics And Public Policy', Direct: '', SPOC: '', NEW: '2'}],
-          'Link15': [{ Accelerator: 'T-Mobile_Contract Lifecycle Management  & Templates', Direct: '', SPOC: '', NEW: '1'}],
-          'Link16': [
-              { Accelerator: 'The Navigator Digital Supply Chain Audit', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Tata Steel', Direct: '', SPOC: '', NEW: '3'}
-          ],
-          'All': [
-              { Accelerator: 'Accuray', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Arch Capital', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Carrier', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'Mars', Direct: '', SPOC: '', NEW: '3'},
-              { Accelerator: 'Mcdonalds', Direct: '', SPOC: '', NEW: '3'},
-              { Accelerator: 'Merck', Direct: '', SPOC: '', NEW: '4'},
-              { Accelerator: 'Nationwide', Direct: '', SPOC: '', NEW: '3'},
-              { Accelerator: 'Northen Trust', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Pepsico', Direct: '', SPOC: '', NEW: '22'},
-              { Accelerator: 'Polen', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'Practice - Bench', Direct: '', SPOC: '', NEW: '8'},
-              { Accelerator: 'Prologis', Direct: '', SPOC: '', NEW: '4'},
-              { Accelerator: 'Ptp', Direct: '', SPOC: '', NEW: '4'},
-              { Accelerator: 'Quantum Energy Partners', Direct: '', SPOC: '', NEW: '2'},
-              { Accelerator: 'T-Mobile', Direct: '', SPOC: '', NEW: '1'},
-              { Accelerator: 'Tata Steel', Direct: '', SPOC: '', NEW: '3'}
-          ]
-      };
-
-      const selectElement = document.getElementById('accelerators');
-      const resultsContainer = document.getElementById('results');
-
-      selectElement.addEventListener('change', (event) => {
-          const selectedValue = event.target.value;
-          const projects = data[selectedValue];
-
-          if (projects) {
-              const html = projects.map(project => `
-                  <div class="flex justify-between p-2">
-                      <div class="w-1/2 text-left">${project.Accelerator}</div>
-                      <div class="w-1/2 text-right">${project.NEW}</div>
-                  </div>
-              `).join('');
-
-              resultsContainer.innerHTML = html;
-          }
-      });
-  </script>
-
-  
-
-
-  {% endblock %}
-
+    {% endblock %}
+</body>

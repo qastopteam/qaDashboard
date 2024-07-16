@@ -31,13 +31,15 @@ content %}
 
     .filters {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 5px;
         position: relative;
     }
 
     .filters label {
         font-weight: bold;
+        font-size: 0.8em;
+        margin-top: 5px;
     }
 
     .filters select,
@@ -49,7 +51,7 @@ content %}
         width: 200px;
         box-sizing: border-box;
     }
-
+/* 
     .filters select.invalid {
         border-color: red;
     }
@@ -57,7 +59,7 @@ content %}
     .filters .required::after {
         content: "*";
         color: red;
-    }
+    } */
 
     table {
         width: 100%;
@@ -138,16 +140,20 @@ content %}
     }
     #resetBtn {
         background-color: #f0f0f0;
-        font-weight: bold;
         color: #333;
         border: 1px solid #ccc;
         padding: 8px 16px;
         cursor: pointer;
         font-size: 14px;
-        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        border-radius: 4px; 
-        display: flex; 
+        transition:
+            background-color 0.3s,
+            color 0.3s,
+            border-color 0.3s;
+        border-radius: 4px;
+        display: inline-flex;
         align-items: center;
+        margin-left: 10px;
+        font-weight: bold;
     }
 
     #resetBtn:hover {
@@ -257,8 +263,11 @@ content %}
                 </select>
             </div>
             <!-- Reset Button -->
-            <button id="resetBtn" class="p-2 border border-gray-300 rounded bg-gray-200">
-                 Reset Filters
+            <button
+                id="resetBtn"
+                class="p-2 border border-gray-300 rounded bg-gray-200"
+            >
+                Reset Filters
             </button>
         </div>
         <!-- Employee List Table -->

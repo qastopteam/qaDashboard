@@ -9,14 +9,10 @@ class Project(db.Model):
     impediments = db.Column(db.String(255), nullable=False)
     resource = db.Column(db.String(120), nullable=False)
 
-    # def __repr__(self):
-    #     return f"<Project {self.project_name}>"
 
-    def __init__(self, project_name, rag_status, impediments, resource):
-        self.project_name = project_name
-        self.rag_status = rag_status
-        self.impediments = impediments
-        self.resource = resource
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self):
         return {
