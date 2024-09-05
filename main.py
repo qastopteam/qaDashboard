@@ -49,6 +49,22 @@ def contacts():
 def accelerators():
     return render_template('accelerators.html')
 
+
+@app.route("/reporting")
+def reporting():
+    return render_template('reporting.html')
+
+
+@app.route("/rag_status")
+def rag_status():
+    return render_template('rag_status.html')
+
+
+@app.route("/ip")
+def interview_panelists():
+    return render_template('interview_panelist.html')
+
+
 @app.route("/data_entry")
 def dataentry():
     connection = sqlite3.connect("test.db")
