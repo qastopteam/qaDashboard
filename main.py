@@ -8,10 +8,52 @@ from routes import proutes  # Import the blueprint
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
 db.init_app(app)
-
+current_tab = "Overview"
+current_page = ""
 app.register_blueprint(proutes)  # Register the blueprint
 
+
 # app.register_blueprint(govroutes)
+@app.route('/scp', methods=['GET', 'POST'])
+def scp():
+    cp = {
+        "About Us": "Overview",
+        "Accelerators": "Overview",
+        "Projects": "Governance",
+        "Resources": "Governance",
+        "WSR": "Data_Entry",
+        "Skill Tracker": "Data_Entry",
+        "Action Items": "Data_Entry",
+        "Leave Tracker": "Data_Entry",
+        "RAG Status": "Reporting",
+        "Interview_Panelists": "Reporting"
+    }
+    bd = request.get_json()
+    print(bd)
+    global current_page
+    current_page = bd["Current_Page"]
+    global current_tab
+    current_tab = cp[current_page]
+
+    return {"Current_Page": current_page, "Current_Tab": current_tab}
+
+
+@app.route('/sct', methods=['GET', 'POST'])
+def sct():
+
+    bd = request.get_json()
+    print(bd)
+    global current_page
+    current_page = ""
+    global current_tab
+    current_tab = bd["Current_Tab"]
+    print(current_tab)
+    return {"Current_Page": "", "Current_Tab": current_tab}
+
+
+@app.route('/gcp', methods=['GET', 'POST'])
+def gcp():
+    return {"Current_Page": current_page, "Current_Tab": current_tab}
 
 
 @app.route("/")
@@ -66,7 +108,13 @@ def interview_panelists():
 
 
 @app.route("/data_entry")
+@app.route("/wsr")
+@app.route("/deskilltracker")
+@app.route("/deAIFPR")
+@app.route("/deleavetracker")
 def dataentry():
+    full_url = request.url
+    print(full_url)
     connection = sqlite3.connect("test.db")
     #print(connection.total_changes)
     cursor = connection.cursor()
@@ -84,9 +132,9 @@ def dataentry():
         print(row)
     title = 'Home'
     trackers = [
-        'Weekly RAG Status', 'Skill Tracker',
+        #'Weekly RAG Status', 'Skill Tracker',
         'Action Items for Practice - Request',
-        'Action Items for Practice - Feedback', 'Leave Tracker'
+        'Action Items for Practice - Feedback'  #, 'Leave Tracker'
     ]
     leads = ['-- Select --', 'Jeena', 'Thazhuva', 'Sivanash', 'Jennifer']
     rags = ['-- Select --', 'Red', 'Amber', 'Green']
@@ -228,23 +276,101 @@ def dataentry():
     ]
 
     # return render_template('index.html', title=title)
-    return render_template('dataEntry.html',
-                           title=title,
-                           trackers=trackers,
-                           leads=leads,
-                           projects=projects,
-                           emp_ids=emp_ids,
-                           employees=employees,
-                           test_types=test_types,
-                           rags=rags,
-                           expertice_levels=expertice_levels,
-                           skills=skills,
-                           up_skillings=up_skillings,
-                           area_of_supports_Request=area_of_supports_Request,
-                           area_of_supports_Feedback=area_of_supports_Feedback,
-                           client_names=client_names,
-                           request_types=request_types,
-                           leave_types=leave_types)
+    if "wsr" in full_url:
+        return render_template(
+            'data_entry_wsr.html',
+            title=title,
+            trackers=trackers,
+            leads=leads,
+            projects=projects,
+            emp_ids=emp_ids,
+            employees=employees,
+            test_types=test_types,
+            rags=rags,
+            expertice_levels=expertice_levels,
+            skills=skills,
+            up_skillings=up_skillings,
+            area_of_supports_Request=area_of_supports_Request,
+            area_of_supports_Feedback=area_of_supports_Feedback,
+            client_names=client_names,
+            request_types=request_types,
+            leave_types=leave_types)
+    elif "data_entry" in full_url:
+        return render_template(
+            'dataEntry.html',
+            title=title,
+            trackers=trackers,
+            leads=leads,
+            projects=projects,
+            emp_ids=emp_ids,
+            employees=employees,
+            test_types=test_types,
+            rags=rags,
+            expertice_levels=expertice_levels,
+            skills=skills,
+            up_skillings=up_skillings,
+            area_of_supports_Request=area_of_supports_Request,
+            area_of_supports_Feedback=area_of_supports_Feedback,
+            client_names=client_names,
+            request_types=request_types,
+            leave_types=leave_types)
+    elif "deskilltracker" in full_url:
+        return render_template(
+            'data_entry_skill_tracker.html',
+            title=title,
+            trackers=trackers,
+            leads=leads,
+            projects=projects,
+            emp_ids=emp_ids,
+            employees=employees,
+            test_types=test_types,
+            rags=rags,
+            expertice_levels=expertice_levels,
+            skills=skills,
+            up_skillings=up_skillings,
+            area_of_supports_Request=area_of_supports_Request,
+            area_of_supports_Feedback=area_of_supports_Feedback,
+            client_names=client_names,
+            request_types=request_types,
+            leave_types=leave_types)
+    elif "deleavetracker" in full_url:
+        return render_template(
+            'data_entry_leave_tracker.html',
+            title=title,
+            trackers=trackers,
+            leads=leads,
+            projects=projects,
+            emp_ids=emp_ids,
+            employees=employees,
+            test_types=test_types,
+            rags=rags,
+            expertice_levels=expertice_levels,
+            skills=skills,
+            up_skillings=up_skillings,
+            area_of_supports_Request=area_of_supports_Request,
+            area_of_supports_Feedback=area_of_supports_Feedback,
+            client_names=client_names,
+            request_types=request_types,
+            leave_types=leave_types)
+    elif "deAIFPR" in full_url:
+        return render_template(
+            'data_entry_action_items.html',
+            title=title,
+            trackers=trackers,
+            leads=leads,
+            projects=projects,
+            emp_ids=emp_ids,
+            employees=employees,
+            test_types=test_types,
+            rags=rags,
+            expertice_levels=expertice_levels,
+            skills=skills,
+            up_skillings=up_skillings,
+            area_of_supports_Request=area_of_supports_Request,
+            area_of_supports_Feedback=area_of_supports_Feedback,
+            client_names=client_names,
+            request_types=request_types,
+            leave_types=leave_types)
 
 
 @app.route('/gip', methods=['GET', 'POST'])

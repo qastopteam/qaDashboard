@@ -1,28 +1,28 @@
 {% extends "nav.html" %} {% block title %}Projects{% endblock %} {% block
 content %}
 <!-- Header Section -->
-<div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
-  <h1 class="text-2xl font-bold inline-block">Projects</h1>
+<div id="page_header">
+  <h1>Projects</h1>
 </div>
 <!-- End of Header Section -->
 
 <div class="flex gap-4 p-2">
   <!-- Left Column -->
   <div class="flex flex-col gap-4 w-1/2">
-    <div>
-      <div class="bg-gray-200 p-1 rounded-lg">
-        <h3 class="text-lg font-bold text-black-400">Projects RAG Status</h3>
+    <div id="sub_page_box">
+      <div id="sub_page_headers">
+        <h3>Projects RAG Status</h3>
       </div>
-      <div class="border border-solid border-slate-400 p-1">
+      <div class="p-2">
         The Quality Engineering monitors the weekly health check for the
         projects worked on and uses this dashboard for monitoring the high-alert
         projects for solutionizing a better approach to meet the deadlines.
       </div>
     </div>
 
-    <div>
-      <div class="bg-gray-200 p-1 rounded-lg">
-        <h3 class="text-lg font-bold text-black-400">Add New Project</h3>
+    <div id="sub_page_box">
+      <div id="sub_page_headers">
+        <h3>Add New Project</h3>
       </div>
       <form
         id="add-project-form"
@@ -58,7 +58,7 @@ content %}
         </div>
         <button type="submit" class="default_Button">Add Project</button>
       </form>
-      <div class="mt-4">
+      <div class="mt-4 p-2">
         <input type="file" id="upload-file" accept=".csv, .xlsx" />
         <button id="upload-button" class="default_Button">
           Upload Projects
@@ -69,25 +69,21 @@ content %}
 
   <!-- Right Column -->
   <div class="flex flex-col gap-4 w-1/2">
-    <div>
-      <div class="bg-orange-200 p-1 rounded-lg">
-        <h3 class="text-lg font-bold text-black-400 text-center">
-          Governance - Council Updates
-        </h3>
+    <div id="sub_page_box">
+      <div id="sub_page_headers">
+        <h3>Governance - Council Updates</h3>
       </div>
-      <div class="border border-solid border-slate-400 p-1">
+      <div class="p-2">
         <p>- Projects in Red = <span id="rCount">0</span></p>
         <p>- Projects in Amber = <span id="aCount">0</span></p>
         <p>- Projects in Green = <span id="gCount">0</span></p>
       </div>
     </div>
-    <div>
-      <div class="bg-gray-200 p-1 rounded-lg">
-        <h3 class="text-lg font-bold text-black-400 text-center">
-          Project Overall Status
-        </h3>
+    <div id="sub_page_box">
+      <div id="sub_page_headers">
+        <h3>Project Overall Status</h3>
       </div>
-      <div class="border border-solid border-slate-400 p-1">
+      <div class="p-2">
         <canvas id="rag-status-chart"></canvas>
       </div>
     </div>
@@ -116,7 +112,7 @@ content %}
     </div>
   </div>
   <div class="border border-solid border-slate-400 p-1">
-    <div class="flex justify-between bg-orange-200 p-2 rounded-lg">
+    <div class="flex justify-between bg-gray-400 p-2 rounded-lg">
       <div class="w-1/5 text-left font-bold">Project</div>
       <div class="w-1/5 text-left font-bold">RAG Status</div>
       <div class="w-1/5 text-left font-bold">Impediments</div>

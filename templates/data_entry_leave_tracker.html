@@ -1,0 +1,260 @@
+{% extends "nav.html" %} {% block title %}Projects{% endblock %} {% block
+content %}
+<!-- Header Section -->
+<div id="page_header">
+    <h1>DataEntry</h1>
+</div>
+<!-- End of Header Section -->
+<style>
+    td {
+        min-width: 20px;
+    }
+    select {
+        width: 270px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    textarea {
+        width: 270px;
+        border: 1px solid #ccc;
+    }
+    input {
+        width: 270px;
+        border: 1px solid #ccc;
+    }
+    input[type="text"]::placeholder {
+        /* Firefox, Chrome, Opera */
+        text-align: center;
+        font-style: italic;
+    }
+
+    textarea::placeholder {
+        /* Firefox, Chrome, Opera */
+        text-align: center;
+        font-style: italic;
+    }
+    h5 {
+        background-color: #666666;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+<div id="part1" style="width: 48%; float: left; display: inline">
+    <div>
+        <div>
+            <h5>Input Form</h5>
+        </div>
+        <div id="AppliedFilters"></div>
+    </div>
+    <div>
+        <div id="EntryForm"></div>
+        <button class="default_Button" id="Submit_Button" onclick="sendInput()">
+            Submit
+        </button>
+        <label id="alert"></label>
+    </div>
+</div>
+<div id="part2" style="width: 48%; float: left; display: inline">
+    <div>
+        <div>
+            <h5>Apply Filters</h5>
+        </div>
+        <div id="ApplyFilters"></div>
+    </div>
+    <div id="popup">
+        <span class="popuptext" id="myPopup"></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const date = new Date();
+    const formatter = new Intl.DateTimeFormat('zh-CN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const formattedDate = formatter.format(date).replaceAll("/","-");
+    const employees={{ employees|tojson }}
+    const leads={{leads|tojson}}
+            function getPracticeLead() {
+                selectElement =document.getElementById("PracticeLead");
+                lead_name =
+                    selectElement.options
+                    [selectElement.selectedIndex].textContent;
+                //lead_name = document.getElementById("PracticeLead").value
+                document.querySelector('.practice_lead').textContent = lead_name;
+                emps= ['-- Select --'];
+                for (emp of employees){
+                if (emp.lead==lead_name){
+                emps.push(emp.name);
+                }
+                }
+                document.getElementById("ResourceName").innerHTML=emps.map((employee) => `
+                        <option  value=${employee}>${employee}</option>
+                    `,
+                                )
+                                .join("");
+            }
+            function getResourceName() {
+                selectElement =document.getElementById("PracticeLead");
+                lead_name =selectElement.options[selectElement.selectedIndex].textContent;
+                selectElement =document.getElementById("ResourceName");
+                resource_name =selectElement.options[selectElement.selectedIndex].textContent;
+                projects= ['-- Select --'];
+                for (emp of employees){
+                if (emp.lead==lead_name){
+                    if(emp.name==resource_name){
+                        projects.push(emp.project);
+                    }
+                }
+                }
+                console.log(projects);
+                document.querySelector('.resource_name').textContent = resource_name;
+                document.getElementById("ProjectName").innerHTML=projects.map((project) => `
+                    <option  value=${project}>${project}</option>
+                `,
+                            )
+                            .join("");
+            }
+
+            function getLeaveType() {
+                output = document.getElementById("LeaveType").value
+                //document.querySelector('.leave_type').textContent = output;
+                document.getElementById('leave_type_alert').textContent = "";
+            }
+            function getDateDiff(){
+                date1 = document.getElementById("StartDate").value
+                date2 = document.getElementById("EndDate").value
+                var d1 = new Date(date1);
+                var d2 = new Date(date2);
+                var diff = d2.getTime() - d1.getTime();
+                var daydiff = diff / (1000 * 60 * 60 * 24);
+                document.getElementById('total_working_days').textContent = daydiff;
+            }
+            function getChooseTracker() {
+                Tracker ="Leave Tracker"
+                tbl=`<table>
+                    <tbody>
+                        <tr><td id="col_label">Practice Lead<span>*</span><td>:</td></td><td  class="practice_lead"><span id="mand_fields">-- Select --</span></td></tr>
+                        <tr><td id="col_label">Resource Name<span>*</span><td>:</td></td><td class="resource_name"><span id="mand_fields">-- Select --</span></td></tr>
+                    </tbody>
+                  </table>`;
+                document.getElementById("AppliedFilters").innerHTML =tbl;
+                tbl1=`
+                              <table>
+                <tbody>
+                <tr>
+                    <td id="col_label">Leave Type<span>*</span><td>:</td></td>
+                    <td>
+                        <select class="select_Dropdown_Input" onchange="getLeaveType()" name="LeaveType" id="LeaveType">
+                        {% for leave_type in leave_types %}
+                        <option  value={{leave_type}}>{{leave_type}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr><td id="leave_type_alert"></td></tr>
+                <tr>
+                    <td id="col_label">Start Date<td>:</td></td>
+                    <td><input class="text_Input" type="date" id="StartDate" onchange="getDateDiff()" name="trip-start" value="2024-05-22" min="2018-01-01" max="2025-12-31" /></td>
+                </tr>
+                <tr>
+                    <td id="col_label">End Date<td>:</td></td>
+                    <td><input class="text_Input" type="date" id="EndDate" onchange="getDateDiff()" name="trip-end" value="2024-05-22" min="2018-01-01" max="2025-12-31" /></td>
+                </tr>
+                <tr>
+                    <td id="col_label">Total Working Days<td>:</td></td>
+                    <td id="total_working_days">0</td>
+                </tr>
+                </tbody>
+            </table>
+                `;
+                document.getElementById("EntryForm").innerHTML =tbl1;
+                getDateDiff();
+                tbl2=`<table>
+                  <tbody>
+                  <tr>
+                      <td id="col_label">Practice Lead<td>:</td></td>
+                      <td>
+                            <select class="select_Dropdown_Input" onchange="getPracticeLead()" name="PracticeLead" id="PracticeLead">
+                            {% for lead in leads %}
+                            <option  value={{lead}}>{{lead}}</option>
+                            {% endfor %}
+                            </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td id="col_label">Resource Name<td>:</td></td>
+                      <td>
+                          <select class="select_Dropdown_Input" onchange="getResourceName()" name="ResourceName" id="ResourceName">
+                              <option  value="-- Select --">-- Select --</option>
+                          </select>
+                      </td>
+                  </tr>
+                  </tbody>
+              </table>`;
+                document.getElementById("ApplyFilters").innerHTML =tbl2;
+            }
+            getChooseTracker();
+            function AlertFunc() {
+                document.getElementById('alert').textContent = "Please Fill the Mandatory Fields(*)";
+                setTimeout(function () {
+                    document.getElementById('alert').textContent = "";
+                }, 5000);
+                //$('#GFG').text("Div hides after 1 second.");
+            }
+            function PopupFunction(Tracker) {
+              var popup = document.getElementById("myPopup");
+              popup.textContent = `${Tracker} Form Submitted Successfully`;
+                popup.classList.add('custom-background');
+              //popup.classList.toggle("show");
+              setTimeout(function () {
+                    popup.textContent = "";
+                  popup.classList.remove('custom-background');
+                }, 5000);
+            }
+            function sendInput() {
+                Tracker ="Leave Tracker"
+                 selectElement =document.getElementById("PracticeLead");
+                 practice_lead =selectElement.options[selectElement.selectedIndex].textContent;
+                 selectElement =document.getElementById("ResourceName");
+                 resource_name =selectElement.options[selectElement.selectedIndex].textContent;
+                 selectElement =document.getElementById("LeaveType");
+                 leave_type =selectElement.options[selectElement.selectedIndex].textContent;
+                 flag=true;
+                 if(practice_lead=="-- Select --"){
+                  flag=false;
+                 }
+                 if(resource_name=="-- Select --"){
+                  flag=false;
+                 }
+                 if(leave_type=="-- Select --"){
+                  flag=false;
+                  document.getElementById('leave_type_alert').textContent = "*Please Select Leave Type";
+                 }
+                 if(flag){
+                  fetch("https://37727f4f-9aca-4f3e-a138-f54e7c36574d-00-27qjdf76eegx8.sisko.replit.dev/gip", {
+                  method: "POST",
+                  body: JSON.stringify({
+                  "Practice_Lead":practice_lead,
+                  "Resource_Name":resource_name,
+                  "Leave_Type":leave_type
+                  }),
+                  headers: {
+                   "Content-type": "application/json; charset=UTF-8"
+                  }
+                  })
+                  .then((response) => response.json())
+                  .then((json) => console.log(json));
+
+                  PopupFunction(Tracker);
+                  selectElement.value=Tracker;
+                  getChooseTracker();
+                 }
+                 else{
+                 AlertFunc();
+                 }
+            }
+</script>
+{% endblock %}

@@ -26,188 +26,14 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
-        <style>
-            body{
-                background-color: #FFFFFF;
-            }
-            .sidebar-collapsed {
-                width: 5.5rem;
-            }
-            .sidebar-expanded {
-                width: 14rem;
-            }
-            .sidebar-item {
-                transition: all 0.3s;
-                font-size: 1rem;
-            }
-            .sidebar-collapsed .sidebar-sub-item span {
-                display: none;
-            }
-            .sidebar-expanded .sidebar-item span {
-                display: inline;
-            }
-            .sidebar-expanded .sidebar-item i {
-                margin-right: 0.1rem;
-            }
-            .sidebar-header {
-                font-size: 1.25rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                display: flex;
-                margin-left: 15px;
-                transition: all 0.3s;
-            }
-            .sidebar-expanded .sidebar-header .full-title {
-                display: inline;
-            }
-            .sidebar-expanded .sidebar-header .short-title {
-                display: none;
-            }
-            .sidebar-collapsed .sidebar-header .full-title {
-                display: none;
-            }
-            .sidebar-collapsed .sidebar-header .short-title {
-                display: inline;
-            }
-            .sidebar-main-item {
-                font-size: 1rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                text-align:left;
-                width:100%;
-            }
-            .sidebar-sub-item {
-                font-size: 1rem;
-                font-weight: normal;
-                text-transform: capitalize;
-                margin-left: 0.25rem;
-            }
-            .sidebar-header .toggle-btn {
-                margin-right: 0.5rem;
-            }
-            .user-section {
-                display: flex;
-                align-items: center;
-                transition: all 0.3s;
-                justify-content: center;
-            }
-            .user-section span {
-                display: none;
-            }
-            .sidebar-expanded .user-section span {
-                display: inline;
-            }
-            .user-section i {
-                font-size: 1.25rem;
-            }
-            #sidebar {
-                background-color: #F4F4F4;
-                position: fixed;
-                top: 60px;
-                height:100%;
-            }
-            #main_content {
-                margin-top:60px;
-            }
-            .main_content-collapsed {
-                margin-left:5.5rem;
-            }
-            .main_content-expanded {
-                margin-left:14rem;
-            }
-            #page_header {
-                color: black;
-            }
-            #dashboard_header {
-                height: 60px;
-                background-color: #F4F4F4;
-                position: fixed; /* Set the navbar to fixed position */
-                top: 0; /* Position the navbar at the top of the page */
-                width: 100%; /* Full width */
-                opacity: 1;
-            }
-            #sub_page_box {
-                background-color: #F4F4F4;
-                border-radius: 5px;
-            }
-            #sub_page_headers {
-                background-color: #666666;
-                color: white;
-                font-size: 18px;
-                font-weight: bold;
-                padding: 5px;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-            }
-            #page-link {
-                display: block; /* Equivalent to 'block' */
-                color: black; /* Equivalent to 'text-black' */
-                text-align: left; /* Equivalent to 'text-left' */
-                padding: 0.5rem; /* Equivalent to 'p-2' */
-                text-decoration: none; /* Equivalent to 'no-underline' */
-                border-radius: 0.5rem; /* Equivalent to 'rounded-lg' */
-            }
-
-            #page-link:hover { /* Equivalent to 'bg-orange-500' */
-                color: orangered;
-                text-decoration: underline;/* Equivalent to 'text-black' on hover */
-            }
-            .text_Input{
-                padding: 0.5rem; /* p-2 in Tailwind CSS */
-                border: 1px solid #d1d5db; /* border-gray-300 in Tailwind CSS */
-                border-radius: 0.25rem; /* rounded in Tailwind CSS */
-                width: 100%;
-            }
-            .select_Dropdown_Input{
-                padding: 0.5rem; /* p-2 in Tailwind CSS */
-                border: 1px solid #d1d5db; /* border-gray-300 in Tailwind CSS */
-                border-radius: 0.25rem; /* rounded in Tailwind CSS */
-                width: 100%;
-            }
-            .default_Button{
-                  margin-top: 0.5rem; /* mt-2: Tailwind's margin-top of 0.5rem */
-                  padding: 0.5rem; /* p-2: Tailwind's padding of 0.5rem */
-                  background-color: #ea580c; /* bg-orange-700: Tailwind's background color for orange-700 */
-                  color: #ffffff; /* text-white: Tailwind's text color for white */
-                  border-radius: 0.25rem; /* rounded: Tailwind's border-radius of 0.25rem */
-            }
-            .sidebar_section{
-                border-top:1px solid white;
-                border-bottom:1px solid white;
-                height:120px;
-                margin:0px;
-                padding:0px;
-            }
-            .sidebar_section_main_header{
-                width:30px;
-                display:inline-block;
-                text-align:bottom;
-            }
-            .sidebar_section_main_header li{
-                width:77px;
-                display:inline-block;
-                transform: rotate(-0.25turn);
-                height:87px;
-            }
-            .sidebar_section_sub_header{
-                min-width:30px;
-                max-width:170px;
-                display:inline-block;
-                border-left:1px solid white;
-                height:120px;
-            }
-        </style>
     </head>
     <body>
         <div id="dashboard_header">
-            <div class="sidebar-header text-black text-center">
+            <div class="sidebar-header text-white text-center">
                 <button id="toggleSidebar" class="toggle-btn">
                     <i class="fas fa-bars"></i>
                 </button>
-                    <img
-                        src="samanta_tracey.jpg"
-                        style="width: 50px; height: 50px"
-                    />
+                     
                 </p>
             </div>
         </div>
@@ -219,8 +45,8 @@
                 <ul class="list-none m-0 p-0 flex flex-col ">
 
                     <div class="sidebar_section">
-                    <div class="sidebar_section_main_header">
-                    <li class="sidebar-item sidebar-main-item" style="width:63px;height:73px;">
+                    <div class="sidebar_section_main_header" id="Highlight_Tab">
+                    <li class="sidebar-item sidebar-main-item" style="width:80px;height:90px;" onclick="ColorTabName(this)">
                         <a
                             href="/home"
                             id="page-link"
@@ -230,7 +56,7 @@
                     </li>
                     </div>
                     <div  class="sidebar_section_sub_header">
-                    <li class="sidebar-item sidebar-sub-item">
+                    <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
                         <a
                             href="/contact_us"
                             id="page-link"
@@ -239,7 +65,7 @@
                             ><span>About Us</span>
                         </a>
                     </li>
-                    <li class="sidebar-item sidebar-sub-item">
+                    <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
                         <a
                             href="/accelerators"
                             id="page-link"
@@ -251,8 +77,8 @@
                     </div>
                     </div>
                     <div class="sidebar_section">
-                    <div class="sidebar_section_main_header">
-                    <li class="sidebar-item sidebar-main-item">
+                    <div class="sidebar_section_main_header" id="Highlight_Tab">
+                    <li class="sidebar-item sidebar-main-item" style="width:95px;height:105px;" onclick="ColorTabName(this)">
                         
                         <a
                             href="/governance"
@@ -264,7 +90,7 @@
                     </li>
                     </div>
                         <div  class="sidebar_section_sub_header">
-                        <li class="sidebar-item sidebar-sub-item">
+                        <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
                             <a
                                 href="/projects"
                                 id="page-link"
@@ -273,7 +99,7 @@
                                 ><span>Projects</span>
                             </a>
                         </li>
-                        <li class="sidebar-item sidebar-sub-item">
+                        <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
                             <a
                                 href="/resources"
                                 id="page-link"
@@ -285,8 +111,8 @@
                         </div>
                     </div>
                         <div class="sidebar_section">
-                        <div class="sidebar_section_main_header">
-                        <li class="sidebar-item sidebar-main-item" style="width:15px;height:25px;">
+                        <div class="sidebar_section_main_header" id="Highlight_Tab">
+                        <li class="sidebar-item sidebar-main-item" style="width:18px;height:28px;" onclick="ColorTabName(this)">
                             <a
                                 href="/data_entry"
                                 id="page-link"
@@ -296,11 +122,47 @@
                         </li>
                         </div>
                             <div  class="sidebar_section_sub_header">
-                            </div>
+                                <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
+                                    <a
+                                        href="/wsr"
+                                        id="page-link"
+                                    >
+                                        <i class="fas fa-envelope"></i
+                                        ><span>WSR</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
+                                    <a
+                                        href="/deskilltracker"
+                                        id="page-link"
+                                    >
+                                        <i class="fas fa-rocket"></i
+                                        ><span>Skill Tracker</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
+                                    <a
+                                        href="/deAIFPR"
+                                        id="page-link"
+                                    >
+                                        <i class="fas fa-rocket"></i
+                                        ><span>Action Items</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
+                                    <a
+                                        href="/deleavetracker"
+                                        id="page-link"
+                                    >
+                                        <i class="fas fa-rocket"></i
+                                        ><span>Leave Tracker</span>
+                                    </a>
+                                </li>
+                                </div>
                         </div>
                         <div class="sidebar_section">
-                        <div class="sidebar_section_main_header">
-                        <li class="sidebar-item sidebar-main-item" style="width:65px;height:75px;">
+                        <div class="sidebar_section_main_header" id="Highlight_Tab">
+                        <li class="sidebar-item sidebar-main-item" style="width:85px;height:95px;" onclick="ColorTabName(this)">
                             <a
                                 href="/reporting"
                                 id="page-link"
@@ -310,7 +172,7 @@
                         </li>
                         </div>
                         <div class="sidebar_section_sub_header">
-                        <li class="sidebar-item sidebar-sub-item">
+                        <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
                             <a
                                 href="/rag_status"
                                 id="page-link"
@@ -319,7 +181,7 @@
                                 ><span>RAG Status</span>
                             </a>
                         </li>
-                        <li class="sidebar-item sidebar-sub-item">
+                        <li class="sidebar-item sidebar-sub-item" onclick="ColorPageName(this)" id="Highlight">
                             <a
                                 href="/ip"
                                 id="page-link"
@@ -370,9 +232,90 @@
                         chatbot.classList.add("hidden");
                     });
                 }
+                async function ColorPageName(selectedDiv) {
+                    const items = document.querySelectorAll('#Highlight');
+                    console.log("Hello, world!",items);
+                    console.log("world!, Hello",selectedDiv.innerText);
+                    items.forEach(item => {
+                        item.classList.remove('highlight');
+                    });
+                    await fetch("https://37727f4f-9aca-4f3e-a138-f54e7c36574d-00-27qjdf76eegx8.sisko.replit.dev/scp", {
+                      method: "POST",
+                      body: JSON.stringify({
+                      "Current_Page":selectedDiv.innerText
+                      }),
+                      headers: {
+                       "Content-type": "application/json; charset=UTF-8"
+                      }
+                      })
+                      .then((response) => response.json())
+                      .then((json) => console.log(json));
+                    ColorTPName();
+                }
+                async function ColorTabName(selectedDiv) {
+                    const items = document.querySelectorAll('#Highlight_Tab');
+                    console.log("Hello, world!",items);
+                    console.log("world!, Hello",selectedDiv.childNodes[1].innerText);
+                    items.forEach(item => {
+                        item.classList.remove('highlight');
+                    });
+                    await fetch("https://37727f4f-9aca-4f3e-a138-f54e7c36574d-00-27qjdf76eegx8.sisko.replit.dev/sct", {
+                      method: "POST",
+                      body: JSON.stringify({
+                      "Current_Tab":selectedDiv.childNodes[1].innerText
+                      }),
+                      headers: {
+                       "Content-type": "application/json; charset=UTF-8"
+                      }
+                      })
+                      .then((response) => response.json())
+                      .then((json) => console.log(json));
+                    
+                    ColorTPName();
+                }
+                async function ColorTPName() {
+                    let responseData;
+                    await fetch("https://37727f4f-9aca-4f3e-a138-f54e7c36574d-00-27qjdf76eegx8.sisko.replit.dev/gcp", {
+                            method: "POST",
+                            body: JSON.stringify({
+                            "Current_Page":"Hello"
+                            }),
+                            headers: {
+                             "Content-type": "application/json; charset=UTF-8",
+                             "Access-Control-Allow-Origin": "*",
+                             "Access-Control-Allow-Headers": "Content-Type, Authorization"
+                            }
+                            })
+                      .then((response) => response.json())
+                      .then(data => {
+                           responseData = data; // Save response to a variable
+                           console.log(responseData);});
+
+                    console.log("Response",responseData);
+                    console.log("PageName",responseData.Current_Page);
+                    const items = document.querySelectorAll('#Highlight_Tab');
+                    items.forEach(item => {
+                        item.classList.remove('highlight');
+                        console.log("TabName",item.childNodes[1].innerText);
+                        console.log("ResTabName",responseData.Current_Tab);
+                        if(item.innerText == responseData.Current_Tab){
+                            console.log("insideTabName",item.innerText);
+                            item.classList.add('highlight');
+                        }
+                    });
+                    const pages = document.querySelectorAll('#Highlight');
+                    pages.forEach(page => {
+                        page.classList.remove('highlight');
+                        if(responseData.Current_Page!=""){
+                        if(page.innerText == responseData.Current_Page){
+                            page.classList.add('highlight');
+                        }}
+                    });
+                }
+                ColorTPName()
             </script>
             <!-- Chatbot widget -->
-            <div id="chatbot-icon" class="chatbot-icon bg-gray-700">💬</div>
+            <div id="chatbot-icon" class="chatbot-icon">💬</div>
             <div id="chatbot" class="chatbot-container hidden">
                 <div class="chatbot-header">
                     <span>Chat with us!</span>

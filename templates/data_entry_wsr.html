@@ -1,0 +1,346 @@
+{% extends "nav.html" %} {% block title %}Data Entry WSR{% endblock %} {% block
+content %}
+<!-- Header Section -->
+<div id="page_header">
+    <h1>DataEntry-WSR</h1>
+</div>
+<!-- End of Header Section -->
+<style>
+    td {
+        min-width: 20px;
+    }
+    select {
+        width: 270px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    textarea {
+        width: 270px;
+        border: 1px solid #ccc;
+    }
+    input {
+        width: 270px;
+        border: 1px solid #ccc;
+    }
+    input[type="text"]::placeholder {
+        /* Firefox, Chrome, Opera */
+        text-align: center;
+        font-style: italic;
+    }
+
+    textarea::placeholder {
+        /* Firefox, Chrome, Opera */
+        text-align: center;
+        font-style: italic;
+    }
+    h5 {
+        background-color: #666666;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+<div id="part1" style="width: 48%; float: left; display: inline">
+    <div>
+        <div>
+            <h5>Input Form</h5>
+        </div>
+        <div id="AppliedFilters"></div>
+    </div>
+    <div>
+        <div id="EntryForm"></div>
+        <button class="default_Button" id="Submit_Button" onclick="sendInput()">
+            Submit
+        </button>
+        <label id="alert"></label>
+    </div>
+</div>
+<div id="part2" style="width: 48%; float: left; display: inline">
+    <div>
+        <div>
+            <h5>Apply Filters</h5>
+        </div>
+        <div id="ApplyFilters"></div>
+    </div>
+    <div id="popup">
+        <span class="popuptext" id="myPopup"></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const date = new Date();
+    const formatter = new Intl.DateTimeFormat('zh-CN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const formattedDate = formatter.format(date).replaceAll("/","-");
+    const employees={{ employees|tojson }}
+    const leads={{leads|tojson}}
+            function getPracticeLead() {
+                selectElement =document.getElementById("PracticeLead");
+                lead_name =
+                    selectElement.options
+                    [selectElement.selectedIndex].textContent;
+                //lead_name = document.getElementById("PracticeLead").value
+                document.querySelector('.practice_lead').textContent = lead_name;
+                emps= ['-- Select --'];
+                for (emp of employees){
+                if (emp.lead==lead_name){
+                emps.push(emp.name);
+                }
+                }
+                document.getElementById("ResourceName").innerHTML=emps.map((employee) => `
+                        <option  value=${employee}>${employee}</option>
+                    `,
+                                )
+                                .join("");
+            }
+            function getResourceName() {
+                selectElement =document.getElementById("PracticeLead");
+                lead_name =selectElement.options[selectElement.selectedIndex].textContent;
+                selectElement =document.getElementById("ResourceName");
+                resource_name =selectElement.options[selectElement.selectedIndex].textContent;
+                projects= ['-- Select --'];
+                for (emp of employees){
+                if (emp.lead==lead_name){
+                    if(emp.name==resource_name){
+                        projects.push(emp.project);
+                    }
+                }
+                }
+                console.log(projects);
+                document.querySelector('.resource_name').textContent = resource_name;
+                document.getElementById("ProjectName").innerHTML=projects.map((project) => `
+                    <option  value=${project}>${project}</option>
+                `,
+                            )
+                            .join("");
+            }
+            function getProjectName() {
+                selectElement =document.getElementById("ProjectName");
+                output =
+                    selectElement.options
+                    [selectElement.selectedIndex].textContent;
+                document.querySelector('.project_name').textContent = output;
+            }
+            function getRAGStatus() {
+                output = document.getElementById("RAGStatus").value
+                //document.querySelector('.rag_status').textContent = output;
+                document.getElementById('rag_alert').textContent = "";
+            }
+            function getTestingType() {
+                output = document.getElementById("TestingType").value
+                //document.querySelector('.testing_type').textContent = output;
+                document.getElementById('test_type_alert').textContent = "";
+            }
+            function getWeeklyDeliverable() {
+                output = document.getElementById("WeeklyDeliverable").value
+                //document.querySelector('.testing_type').textContent = output;
+                console.log("OPT",output);
+                if(output==""){
+                document.getElementById('weekly_deliverables_alert').textContent = "*Please Enter Weekly Deliverables";
+                }
+                else{
+                document.getElementById('weekly_deliverables_alert').textContent = "";
+                }
+            }
+            function getChooseTracker() {
+                Tracker ="Weekly RAG Status"
+                //output = document.getElementById("ChooseTracker").value
+                //document.querySelector('.choose_tracker').textContent = output;
+                //Tracker = document.getElementById("ChooseTracker").value
+            
+                tbl=`<table>
+                    <tbody>
+                        <tr><td id="col_label">Practice Lead<span>*</span><td>:</td></td><td class="practice_lead"><span id="mand_fields">-- Select --</span></td></tr>
+                        <tr><td id="col_label">Resource Name<span>*</span><td>:</td></td><td class="resource_name"><span id="mand_fields">-- Select --</span></td></tr>
+                        <tr><td id="col_label">Project Name<span>*</span><td>:</td></td><td class="project_name"><span id="mand_fields">-- Select --</span></td></tr>
+                    </tbody>
+                  </table>`;
+                document.getElementById("AppliedFilters").innerHTML =tbl;
+                tbl1=`
+                              <table>
+                <tbody>
+                <tr>
+                    <td id="col_label">RAG Status<span>*</span><td>:</td></td>
+                    <td>
+                        <select class="select_Dropdown_Input" onchange="getRAGStatus()" name="RAGStatus" id="RAGStatus">
+                        {% for rag in rags %}
+                        <option  value={{rag}}>{{rag}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr><td id="rag_alert"></td</tr>
+                <tr>
+                    <td id="col_label">Testing Type<span>*</span><td>:</td></td>
+                    <td>
+                        <select class="select_Dropdown_Input" onchange="getTestingType()" name="TestingType" id="TestingType">
+                        {% for test_type in test_types %}
+                        <option  value={{test_type}}>{{test_type}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr><td id="test_type_alert"></td></tr>
+                <tr>
+                    <td id="col_label">Weekly Deliverable<span>*</span><td>:</td></td>
+                    <td><textarea class="text_Input" id="WeeklyDeliverable" onchange="getWeeklyDeliverable()" placeholder="Enter Weekly Deliverable"></textarea></td>
+                </tr>
+                <tr><td id="weekly_deliverables_alert"></td></tr>
+                <tr>
+                    <td id="col_label">Sub-Tasks<td>:</td></td>
+                    <td><textarea class="text_Input" id="SubTasks" placeholder="Enter Sub Tasks"></textarea></td>
+                </tr>
+                <tr>
+                    <td id="col_label">Impediments<td>:</td></td>
+                    <td><textarea class="text_Input" id="Impediments" placeholder="Enter Impediments"></textarea></td>
+                </tr>
+                <tr>
+                    <td id="col_label">Action-items<td>:</td></td>
+                    <td><textarea class="text_Input" id="ActionItems" placeholder="Enter Action Items"></textarea></td>
+                </tr>
+                <tr>
+                    <td id="col_label">Comments<td>:</td></td>
+                    <td><textarea class="text_Input" id="Comments" placeholder="Enter Comments"></textarea></td>
+                </tr>
+                <tr>
+                    <td id="col_label">Upcoming Leaves<td>:</td></td>
+                    <td><input class="text_Input" type="date" id="StartDate" name="From Date" placeholder="From Date" min="2015-01-01" max="2030-12-31" /> to <input class="text_Input" type="date" id="EndDate" name="To Date"  placeholder="From Date" min="2015-01-01" max="2030-12-31" /></td>
+                </tr>
+                </tbody>
+            </table>
+                `;
+                document.getElementById("EntryForm").innerHTML =tbl1;
+                tbl2=`<table>
+                  <tbody>
+                  <tr>
+                      <td id="col_label">Practice Lead<td>:</td></td>
+                      <td>
+                            <select class="select_Dropdown_Input" onchange="getPracticeLead()" name="PracticeLead" id="PracticeLead">
+                            {% for lead in leads %}
+                            <option  value={{lead}}>{{lead}}</option>
+                            {% endfor %}
+                            </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td id="col_label">Resource Name<td>:</td></td>
+                      <td>
+                          <select class="select_Dropdown_Input" onchange="getResourceName()" name="ResourceName" id="ResourceName">
+                              <option  value="-- Select --">-- Select --</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td id="col_label">Project Name<td>:</td></td>
+                      <td>
+                          <select class="select_Dropdown_Input" onchange="getProjectName()" name="ProjectName" id="ProjectName">
+                            {% for project in projects %}
+                            <option  value={{project}}>{{project}}</option>
+                            {% endfor %}
+                          </select>
+                      </td>
+                  </tr>
+                  </tbody>
+              </table>`;
+                document.getElementById("ApplyFilters").innerHTML =tbl2;
+                
+                 
+            }
+            getChooseTracker();
+            function AlertFunc() {
+                document.getElementById('alert').textContent = "Please Fill the Mandatory Fields(*)";
+                setTimeout(function () {
+                    document.getElementById('alert').textContent = "";
+                }, 5000);
+                //$('#GFG').text("Div hides after 1 second.");
+            }
+            function PopupFunction(Tracker) {
+              var popup = document.getElementById("myPopup");
+              popup.textContent = `${Tracker} Form Submitted Successfully`;
+                popup.classList.add('custom-background');
+              //popup.classList.toggle("show");
+              setTimeout(function () {
+                    popup.textContent = "";
+                  popup.classList.remove('custom-background');
+                }, 5000);
+            }
+            function sendInput() {
+                Tracker ="Weekly RAG Status"
+                 selectElement =document.getElementById("PracticeLead");
+                 practice_lead =selectElement.options[selectElement.selectedIndex].textContent;
+                 selectElement =document.getElementById("ResourceName");
+                 resource_name =selectElement.options[selectElement.selectedIndex].textContent;
+                 selectElement =document.getElementById("ProjectName");
+                 project_name =selectElement.options[selectElement.selectedIndex].textContent;
+                 selectElement =document.getElementById("RAGStatus");
+                 rags =selectElement.options[selectElement.selectedIndex].textContent;
+                 selectElement =document.getElementById("TestingType");
+                 test_type =selectElement.options[selectElement.selectedIndex].textContent;
+                 weekly_deliverable = document.getElementById("WeeklyDeliverable").value;
+                 flag=true;
+                 console.log("Result",rags,"Result1",test_type);
+                 if(practice_lead=="-- Select --"){
+                  flag=false;
+                 }
+                 if(resource_name=="-- Select --"){
+                  flag=false;
+                 }
+                 if(project_name=="-- Select --"){
+                  flag=false;
+                 }
+                 if(rags=="-- Select --"){
+                  flag=false;
+                  document.getElementById('rag_alert').textContent = "*Please Select RAG Status";
+                 }
+                 if(test_type=="-- Select --"){
+                  flag=false;
+                  document.getElementById('test_type_alert').textContent = "*Please Select Testing Type";
+                 }
+                 if(weekly_deliverable==""){
+                  flag=false;
+                  document.getElementById('weekly_deliverables_alert').textContent = "*Please Enter Weekly Deliverables";
+                 }
+                 if(flag){
+                  sub_tasks = document.getElementById("SubTasks").value
+                  impediments = document.getElementById("Impediments").value
+                  action_items = document.getElementById("ActionItems").value
+                  comments = document.getElementById("Comments").value
+                  start_date = document.getElementById("StartDate").value
+                  end_date = document.getElementById("EndDate").value
+                  fetch("https://37727f4f-9aca-4f3e-a138-f54e7c36574d-00-27qjdf76eegx8.sisko.replit.dev/gip", {
+                  method: "POST",
+                  body: JSON.stringify({
+                  "Practice_Lead":practice_lead,
+                  "Resource_Name":resource_name,
+                  "Project_Name":project_name,
+                  "RAG_Status": rags,
+                  "Test_Type": test_type,
+                  "Weekly_Deliverable": weekly_deliverable,
+                  "Sub_Tasks":sub_tasks,
+                  "Impediments":impediments,
+                  "Action_Items":action_items,
+                  "Comments":comments,
+                  "Start_Date":start_date,
+                  "End_Date":end_date
+                  }),
+                  headers: {
+                   "Content-type": "application/json; charset=UTF-8"
+                  }
+                  })
+                  .then((response) => response.json())
+                  .then((json) => console.log(json));
+
+                  PopupFunction(Tracker);
+                     selectElement.value=Tracker;
+                       getChooseTracker();
+                 }
+                 else{
+                 AlertFunc();
+                 }
+                
+            }
+</script>
+{% endblock %}

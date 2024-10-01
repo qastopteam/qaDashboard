@@ -1,44 +1,40 @@
 {% extends "nav.html" %} {% block title %}Projects{% endblock %} {% block
 content %}
 <!-- Header Section -->
-<div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
-  <h1 class="text-2xl font-bold inline-block">Accelerators</h1>
+<div id="page_header">
+  <h1>Accelerators</h1>
 </div>
 <!-- End of Header Section -->
 <div>
   <div class="flex gap-4 p-2">
     <div class="flex flex-col gap-4">
-      <div>
-        <div class="bg-gray-200 p-1">
-          <h3 class="text-lg font-bold text-red-400">Quality Practice</h3>
+      <div id="sub_page_box">
+        <div id="sub_page_headers">
+          <h3>Quality Practice</h3>
         </div>
-        <div class="border border-solid border-slate-400 p-1">
+        <div class="p-2">
           The Quality Practice team intends to create test accelerators and POC
           (proof of concepts) on various testing models using cutting edge
           technologies on demand. The accelerators built are for Practice and
           for the clients itself.
         </div>
       </div>
-      <div>
-        <div class="bg-gray-200 p-1">
-          <h3 class="text-lg font-bold text-red-400">
-            Accelerators from Practice
-          </h3>
+      <div id="sub_page_box">
+        <div id="sub_page_headers">
+          <h3>Accelerators from Practice</h3>
         </div>
-        <div class="border border-solid border-slate-400 p-1">
+        <div class="p-2">
           The Quality Practice team have the following accelerators for quick
           demo:
         </div>
       </div>
     </div>
     <div>
-      <div>
-        <div class="bg-orange-200 p-1">
-          <h3 class="text-lg font-bold text-red-400 text-center">
-            Practice - Council Updates
-          </h3>
+      <div id="sub_page_box">
+        <div id="sub_page_headers">
+          <h3>Practice - Council Updates</h3>
         </div>
-        <div class="border border-solid border-slate-400 p-1">
+        <div class="p-2">
           <p>
             - The practice hits the head account to 100 and marks a milestone.
           </p>
@@ -60,7 +56,7 @@ content %}
         <select
           id="accelerators"
           name="accelerators"
-          class="p-2 border border-gray-300 rounded"
+          class="select_Dropdown_Input"
         >
           <option value="All">All</option>
           <option value="Comparator1">Data Comparator</option>
@@ -72,12 +68,12 @@ content %}
           id="search"
           name="search"
           placeholder="Search..."
-          class="p-2 border border-gray-300 rounded"
+          class="text_Input"
         />
       </div>
     </div>
     <div class="border border-solid border-slate-400 p-1">
-      <div class="flex justify-between bg-orange-200 p-2 rounded-lg">
+      <div class="flex justify-between bg-gray-400 p-2 rounded-lg">
         <div class="w-1/4 text-left font-bold">Category</div>
         <div class="w-1/4 text-left font-bold">Accelerator name</div>
         <div class="w-1/4 text-left font-bold">SPOC</div>
@@ -243,7 +239,7 @@ content %}
 
   document.getElementById("next").addEventListener("click", () => {
     const filteredLinks = getFilteredLinks();
-    if (currentPage < Math.ceil(filteredLinks.  length / itemsPerPage)) {
+    if (currentPage < Math.ceil(filteredLinks.length / itemsPerPage)) {
       currentPage++;
       renderResults(filteredLinks);
     }

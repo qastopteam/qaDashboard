@@ -1,25 +1,13 @@
 {% extends "nav.html" %} {% block title %}Projects{% endblock %} {% block
 content %}
 <!-- Header Section -->
-<div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
-    <h1 class="text-2xl font-bold inline-block">DataEntry</h1>
+<div id="page_header">
+    <h1>DataEntry</h1>
 </div>
 <!-- End of Header Section -->
 <style>
     td {
         min-width: 20px;
-    }
-    #part1 #mand_fields {
-        color: graytext;
-        font-style: italic;
-    }
-    #part1 span {
-        color: red;
-    }
-    #col_label {
-        width: 205px;
-        max-width: 205px;
-        min-width: 205px;
     }
     select {
         width: 270px;
@@ -45,168 +33,15 @@ content %}
         text-align: center;
         font-style: italic;
     }
-    #StartDate,
-    #EndDate {
-        width: 122.5px;
-        border: 1px solid #ccc;
-        text-align: center;
-    }
     h5 {
-        background-color: #fed7aa;
-        color: #1f2937;
+        background-color: #666666;
+        color: white;
         padding: 5px;
         border-radius: 5px;
         margin-top: 20px;
         margin-bottom: 10px;
         font-size: 18px;
         font-weight: bold;
-    }
-    #part1 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        font-weight: 490;
-    }
-    #part2 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: 10px;
-        font-weight: 490;
-    }
-    #AppliedFilters,
-    #EntryForm,
-    #ApplyFilters,
-    #ChoosedTracker {
-        padding-left: 10px;
-    }
-    #AppliedFilters {
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid whitesmoke;
-    }
-    #Submit_Button {
-        color: white;
-        background-color: #c2410c;
-        width: 100px;
-        margin-top: 10px;
-        margin-left: 10px;
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-    }
-    #alert {
-        color: red;
-    }
-    #rag_alert,
-    #leave_type_alert,
-    #expertise_level_alert,
-    #weekly_deliverables_alert,
-    #test_type_alert,
-    #areas_to_improve_alert,
-    #request_description_alert,
-    #request_type_alert,
-    #qe_delivery_lead_alert,
-    #client_name_alert,
-    #requestor_name_alert {
-        color: red;
-        width: 200px;
-        font-size: 10px;
-    }
-    #popup {
-        visibility: hidden;
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        z-index: 1;
-        left: -350px;
-        color: black;
-        font-size: 20px;
-        font-weight: 500;
-        background-color: green;
-        border-radius: 5px;
-        width: 700px;
-        height: 100px;
-        text-align: center;
-        padding-top: 30px;
-    }
-    #popup .custom-background {
-        visibility: visible;
-        background-color: #fed7aa;
-        border-radius: 5px;
-        width: 700px;
-        height: 100px;
-        text-align: center;
-        padding: 30px;
-    }
-    .rate {
-        float: left;
-        height: 46px;
-        padding: 0 10px;
-    }
-    .rate:not(:checked) > input {
-        position: absolute;
-        top: -9999px;
-    }
-    .rate:not(:checked) > label {
-        float: right;
-        width: 1em;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 30px;
-        color: #ccc;
-    }
-    .rate:not(:checked) > label:before {
-        content: "★ ";
-    }
-    .rate > input:checked ~ label {
-        color: #ffc700;
-    }
-    .rate:not(:checked) > label:hover,
-    .rate:not(:checked) > label:hover ~ label {
-        color: #deb217;
-    }
-    .rate > input:checked + label:hover,
-    .rate > input:checked + label:hover ~ label,
-    .rate > input:checked ~ label:hover,
-    .rate > input:checked ~ label:hover ~ label,
-    .rate > label:hover ~ input:checked ~ label {
-        color: #c59b08;
-    }
-    .rate1 {
-        float: left;
-        height: 46px;
-        padding: 0 10px;
-    }
-    .rate1:not(:checked) > input {
-        position: absolute;
-        top: -9999px;
-    }
-    .rate1:not(:checked) > label {
-        float: right;
-        width: 1em;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 30px;
-        color: #ccc;
-    }
-    .rate1:not(:checked) > label:before {
-        content: "★ ";
-    }
-    .rate1 > input:checked ~ label {
-        color: #ffc700;
-    }
-    .rate1:not(:checked) > label:hover,
-    .rate1:not(:checked) > label:hover ~ label {
-        color: #deb217;
-    }
-    .rate1 > input:checked + label:hover,
-    .rate1 > input:checked + label:hover ~ label,
-    .rate1 > input:checked ~ label:hover,
-    .rate1 > input:checked ~ label:hover ~ label,
-    .rate1 > label:hover ~ input:checked ~ label {
-        color: #c59b08;
     }
 </style>
 <div id="part1" style="width: 48%; float: left; display: inline">
@@ -218,7 +53,9 @@ content %}
     </div>
     <div>
         <div id="EntryForm"></div>
-        <button id="Submit_Button" onclick="sendInput()">Submit</button>
+        <button class="default_Button" id="Submit_Button" onclick="sendInput()">
+            Submit
+        </button>
         <label id="alert"></label>
     </div>
 </div>
@@ -232,6 +69,7 @@ content %}
                 onchange="getChooseTracker()"
                 name="ChooseTracker"
                 id="ChooseTracker"
+                class="select_Dropdown_Input"
             >
                 {% for tracker in trackers %}
                 <option value="{{tracker}}">{{tracker}}</option>
@@ -372,14 +210,14 @@ content %}
                 <tr>
                     <td id="col_label">Requestor Name<span>*</span><td>:</td></td>
                     <td>
-                        <input onchange="getRequestorName()" type="text" id="RequestorName" name="RequestorName" placeholder="Enter Requestor Name">
+                        <input class="text_Input" onchange="getRequestorName()" type="text" id="RequestorName" name="RequestorName" placeholder="Enter Requestor Name">
                     </td>
                 </tr>
                 <tr><td id="requestor_name_alert"></td></tr>
                 <tr>
                     <td id="col_label">Client Name<span>*</span><td>:</td></td>
                     <td id="clnt" >
-                        <select onchange="getClientName()" name="ClientName" id="ClientName">
+                        <select class="select_Dropdown_Input" onchange="getClientName()" name="ClientName" id="ClientName">
                         {% for client_name in client_names %}
                         <option  value={{client_name}}>{{client_name}}</option>
                         {% endfor %}
@@ -390,7 +228,7 @@ content %}
                 <tr>
                     <td id="col_label">QE Delivery Lead<span>*</span><td>:</td></td>
                     <td>
-                        <select onchange="getQEDeliveryLead()" name="QEDeliveryLead" id="QEDeliveryLead">
+                        <select class="select_Dropdown_Input" onchange="getQEDeliveryLead()" name="QEDeliveryLead" id="QEDeliveryLead">
                         {% for lead in leads %}
                         <option  value={{lead}}>{{lead}}</option>
                         {% endfor %}
@@ -401,7 +239,7 @@ content %}
                 <tr>
                     <td id="col_label">Choose Request Type<span>*</span><td>:</td></td>
                     <td>
-                        <select onchange="getChooseRequestType()" name="ChooseRequestType" id="ChooseRequestType">
+                        <select class="select_Dropdown_Input" onchange="getChooseRequestType()" name="ChooseRequestType" id="ChooseRequestType">
                         {% for request_type in request_types %}
                         <option  value={{request_type}}>{{request_type}}</option>
                         {% endfor %}
@@ -411,7 +249,7 @@ content %}
                 <tr><td id="request_type_alert"></td></tr>
                 <tr>
                     <td id="col_label">Request Description<span>*</span><td>:</td></td>
-                    <td><textarea id="RequestDescription" onchange="getRequestDescription()" placeholder="Enter Request Description"></textarea></td>
+                    <td><textarea class="text_Input" id="RequestDescription" onchange="getRequestDescription()" placeholder="Enter Request Description"></textarea></td>
                 </tr>
                 <tr><td id="request_description_alert"></td></tr>
                 </tbody>
@@ -425,7 +263,7 @@ content %}
                 <tbody>
                 <tr>
                     <td id="col_label">Areas to Improve<span>*</span><td>:</td></td>
-                    <td><textarea id="AreastoImprove" onchange="getAreastoImprove()" placeholder="Enter Areas to Improve"></textarea></td>
+                    <td><textarea class="text_Input" id="AreastoImprove" onchange="getAreastoImprove()" placeholder="Enter Areas to Improve"></textarea></td>
                 </tr>
                 <tr><td id="areas_to_improve_alert"></td></tr>
                 <tr>
@@ -550,7 +388,7 @@ content %}
                 <tr>
                     <td id="col_label">RAG Status<span>*</span><td>:</td></td>
                     <td>
-                        <select onchange="getRAGStatus()" name="RAGStatus" id="RAGStatus">
+                        <select class="select_Dropdown_Input" onchange="getRAGStatus()" name="RAGStatus" id="RAGStatus">
                         {% for rag in rags %}
                         <option  value={{rag}}>{{rag}}</option>
                         {% endfor %}
@@ -561,7 +399,7 @@ content %}
                 <tr>
                     <td id="col_label">Testing Type<span>*</span><td>:</td></td>
                     <td>
-                        <select onchange="getTestingType()" name="TestingType" id="TestingType">
+                        <select class="select_Dropdown_Input" onchange="getTestingType()" name="TestingType" id="TestingType">
                         {% for test_type in test_types %}
                         <option  value={{test_type}}>{{test_type}}</option>
                         {% endfor %}
@@ -571,28 +409,28 @@ content %}
                 <tr><td id="test_type_alert"></td></tr>
                 <tr>
                     <td id="col_label">Weekly Deliverable<span>*</span><td>:</td></td>
-                    <td><textarea id="WeeklyDeliverable" onchange="getWeeklyDeliverable()" placeholder="Enter Weekly Deliverable"></textarea></td>
+                    <td><textarea class="text_Input" id="WeeklyDeliverable" onchange="getWeeklyDeliverable()" placeholder="Enter Weekly Deliverable"></textarea></td>
                 </tr>
                 <tr><td id="weekly_deliverables_alert"></td></tr>
                 <tr>
                     <td id="col_label">Sub-Tasks<td>:</td></td>
-                    <td><textarea id="SubTasks" placeholder="Enter Sub Tasks"></textarea></td>
+                    <td><textarea class="text_Input" id="SubTasks" placeholder="Enter Sub Tasks"></textarea></td>
                 </tr>
                 <tr>
                     <td id="col_label">Impediments<td>:</td></td>
-                    <td><textarea id="Impediments" placeholder="Enter Impediments"></textarea></td>
+                    <td><textarea class="text_Input" id="Impediments" placeholder="Enter Impediments"></textarea></td>
                 </tr>
                 <tr>
                     <td id="col_label">Action-items<td>:</td></td>
-                    <td><textarea id="ActionItems" placeholder="Enter Action Items"></textarea></td>
+                    <td><textarea class="text_Input" id="ActionItems" placeholder="Enter Action Items"></textarea></td>
                 </tr>
                 <tr>
                     <td id="col_label">Comments<td>:</td></td>
-                    <td><textarea id="Comments" placeholder="Enter Comments"></textarea></td>
+                    <td><textarea class="text_Input" id="Comments" placeholder="Enter Comments"></textarea></td>
                 </tr>
                 <tr>
                     <td id="col_label">Upcoming Leaves<td>:</td></td>
-                    <td><input type="date" id="StartDate" name="From Date" placeholder="From Date" min="2015-01-01" max="2030-12-31" /> to <input type="date" id="EndDate" name="To Date"  placeholder="From Date" min="2015-01-01" max="2030-12-31" /></td>
+                    <td><input class="text_Input" type="date" id="StartDate" name="From Date" placeholder="From Date" min="2015-01-01" max="2030-12-31" /> to <input class="text_Input" type="date" id="EndDate" name="To Date"  placeholder="From Date" min="2015-01-01" max="2030-12-31" /></td>
                 </tr>
                 </tbody>
             </table>
@@ -603,7 +441,7 @@ content %}
                   <tr>
                       <td id="col_label">Practice Lead<td>:</td></td>
                       <td>
-                            <select onchange="getPracticeLead()" name="PracticeLead" id="PracticeLead">
+                            <select class="select_Dropdown_Input" onchange="getPracticeLead()" name="PracticeLead" id="PracticeLead">
                             {% for lead in leads %}
                             <option  value={{lead}}>{{lead}}</option>
                             {% endfor %}
@@ -613,7 +451,7 @@ content %}
                   <tr>
                       <td id="col_label">Resource Name<td>:</td></td>
                       <td>
-                          <select onchange="getResourceName()" name="ResourceName" id="ResourceName">
+                          <select class="select_Dropdown_Input" onchange="getResourceName()" name="ResourceName" id="ResourceName">
                               <option  value="-- Select --">-- Select --</option>
                           </select>
                       </td>
@@ -621,7 +459,7 @@ content %}
                   <tr>
                       <td id="col_label">Project Name<td>:</td></td>
                       <td>
-                          <select onchange="getProjectName()" name="ProjectName" id="ProjectName">
+                          <select class="select_Dropdown_Input" onchange="getProjectName()" name="ProjectName" id="ProjectName">
                             {% for project in projects %}
                             <option  value={{project}}>{{project}}</option>
                             {% endfor %}
@@ -646,7 +484,7 @@ content %}
                 <tr>
                     <td id="col_label">Expertise Level<span>*</span><td>:</td></td>
                     <td>
-                        <select onchange="getExpertiseLevel()" name="ExpertiseLevel" id="ExpertiseLevel">
+                        <select class="select_Dropdown_Input" onchange="getExpertiseLevel()" name="ExpertiseLevel" id="ExpertiseLevel">
                         {% for expertice_level in expertice_levels %}
                         <option  value={{expertice_level}}>{{expertice_level}}</option>
                         {% endfor %}
@@ -657,7 +495,7 @@ content %}
                 <tr>
                     <td id="col_label">Interest for Up-Skilling<td>:</td></td>
                     <td>
-                        <select onchange="getIntUpSkill()" name="IntUpSkill" id="IntUpSkill">
+                        <select class="select_Dropdown_Input" onchange="getIntUpSkill()" name="IntUpSkill" id="IntUpSkill">
                         {% for up_skilling in up_skillings %}
                         <option  value={{up_skilling}}>{{up_skilling}}</option>
                         {% endfor %}
@@ -675,7 +513,7 @@ content %}
                   <tr>
                       <td id="col_label">Employee ID<td>:</td></td>
                       <td>
-                          <select onchange="getDynamicFilter3()" name="DynamicFilter3" id="DynamicFilter3">
+                          <select class="select_Dropdown_Input" onchange="getDynamicFilter3()" name="DynamicFilter3" id="DynamicFilter3">
                             {% for emp_id in emp_ids %}
                             <option  value={{emp_id}}>{{emp_id}}</option>
                             {% endfor %}
@@ -685,7 +523,7 @@ content %}
                    <tr>
                       <td id="col_label">Skills<td>:</td></td>
                       <td id="skl">
-                          <select onchange="getDynamicFilter4()" name="DynamicFilter4" id="DynamicFilter4">
+                          <select class="select_Dropdown_Input" onchange="getDynamicFilter4()" name="DynamicFilter4" id="DynamicFilter4">
                             {% for skill in skills %}
                             <option  value={{skill}}>{{skill}}</option>
                             {% endfor %}
@@ -710,7 +548,7 @@ content %}
                   <tr>
                       <td id="col_label">Area of Support<td>:</td></td>
                       <td>
-                          <select onchange="getAreaofSupport()" name="AreaofSupport" id="AreaofSupport">
+                          <select class="select_Dropdown_Input" onchange="getAreaofSupport()" name="AreaofSupport" id="AreaofSupport">
                             {% for area_of_support_r in area_of_supports_Request %}
                             <option  value={{area_of_support_r}}>{{area_of_support_r}}</option>
                             {% endfor %}
@@ -736,7 +574,7 @@ content %}
                           <tr>
                               <td id="col_label">Area of Support<td>:</td></td>
                               <td>
-                                  <select onchange="getAreaofSupport()" name="AreaofSupport" id="AreaofSupport">
+                                  <select class="select_Dropdown_Input" onchange="getAreaofSupport()" name="AreaofSupport" id="AreaofSupport">
                                     {% for area_of_support_fb in area_of_supports_Feedback %}
                                     <option  value={{area_of_support_fb}}>{{area_of_support_fb}}</option>
                                     {% endfor %}
@@ -763,7 +601,7 @@ content %}
                 <tr>
                     <td id="col_label">Leave Type<span>*</span><td>:</td></td>
                     <td>
-                        <select onchange="getLeaveType()" name="LeaveType" id="LeaveType">
+                        <select class="select_Dropdown_Input" onchange="getLeaveType()" name="LeaveType" id="LeaveType">
                         {% for leave_type in leave_types %}
                         <option  value={{leave_type}}>{{leave_type}}</option>
                         {% endfor %}
@@ -773,11 +611,11 @@ content %}
                 <tr><td id="leave_type_alert"></td></tr>
                 <tr>
                     <td id="col_label">Start Date<td>:</td></td>
-                    <td><input type="date" id="StartDate" onchange="getDateDiff()" name="trip-start" value="2024-05-22" min="2018-01-01" max="2025-12-31" /></td>
+                    <td><input class="text_Input" type="date" id="StartDate" onchange="getDateDiff()" name="trip-start" value="2024-05-22" min="2018-01-01" max="2025-12-31" /></td>
                 </tr>
                 <tr>
                     <td id="col_label">End Date<td>:</td></td>
-                    <td><input type="date" id="EndDate" onchange="getDateDiff()" name="trip-end" value="2024-05-22" min="2018-01-01" max="2025-12-31" /></td>
+                    <td><input class="text_Input" type="date" id="EndDate" onchange="getDateDiff()" name="trip-end" value="2024-05-22" min="2018-01-01" max="2025-12-31" /></td>
                 </tr>
                 <tr>
                     <td id="col_label">Total Working Days<td>:</td></td>
@@ -793,7 +631,7 @@ content %}
                   <tr>
                       <td id="col_label">Practice Lead<td>:</td></td>
                       <td>
-                            <select onchange="getPracticeLead()" name="PracticeLead" id="PracticeLead">
+                            <select class="select_Dropdown_Input" onchange="getPracticeLead()" name="PracticeLead" id="PracticeLead">
                             {% for lead in leads %}
                             <option  value={{lead}}>{{lead}}</option>
                             {% endfor %}
@@ -803,7 +641,7 @@ content %}
                   <tr>
                       <td id="col_label">Resource Name<td>:</td></td>
                       <td>
-                          <select onchange="getResourceName()" name="ResourceName" id="ResourceName">
+                          <select class="select_Dropdown_Input" onchange="getResourceName()" name="ResourceName" id="ResourceName">
                               <option  value="-- Select --">-- Select --</option>
                           </select>
                       </td>

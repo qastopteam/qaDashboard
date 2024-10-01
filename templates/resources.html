@@ -1,8 +1,8 @@
 {% extends "nav.html" %} {% block title %}Resources{% endblock %} {% block
 content %}
 <!-- Header Section -->
-<div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
-    <h1 class="text-2xl font-bold inline-block">Resources</h1>
+<div id="page_header">
+    <h1>Resources</h1>
 </div>
 <!-- End of Header Section -->
 <style>
@@ -73,7 +73,7 @@ content %}
     }
 
     th {
-        background-color: #fed7aa;
+        background-color: #bdbdbd;
         color: #1f2937;
         text-align: left;
     }
@@ -98,7 +98,7 @@ content %}
     .pagination button {
         padding: 5px 10px;
         border: 1px solid #cbd5e1;
-        background-color: #fed7aa;
+        background-color: #bdbdbd;
         font-weight: bold;
         border-radius: 4px;
         cursor: pointer;
@@ -118,7 +118,7 @@ content %}
     }
 
     .pagination span.current {
-        background-color: #fed7aa;
+        background-color: #bdbdbd;
         font-weight: bold;
     }
 
@@ -148,7 +148,7 @@ content %}
     }
 
     #resetBtn:hover {
-        background-color: #fed7aa;
+        background-color: #bdbdbd;
         font-weight: bold;
         border-color: #999;
     }
@@ -165,13 +165,11 @@ content %}
 <div class="flex flex-col gap-4 p-2">
     <div class="flex gap-4">
         <!-- Section 1 -->
-        <div class="section_1 w-3/4 overflow-y-auto">
-            <div class="bg-gray-200 p-1 rounded-lg">
-                <h3 class="text-lg font-bold text-black-400">
-                    Resource Training & Development
-                </h3>
+        <div id="sub_page_box" class="section_1 w-3/4 overflow-y-auto">
+            <div id="sub_page_headers">
+                <h3>Resource Training & Development</h3>
             </div>
-            <div class="border border-solid border-slate-400 p-1">
+            <div class="p-2">
                 The Quality Engineering resources are constantly trained in the
                 latest trends and technologies for delivering best-in-class
                 testing services across client projects.
@@ -189,13 +187,11 @@ content %}
         </div>
 
         <!-- Section 2 -->
-        <div class="section_2 w-1/4 overflow-y-auto">
-            <div class="bg-gray-200 p-1 rounded-lg">
-                <h3 class="text-lg font-bold text-black-400 text-center">
-                    Training Updates
-                </h3>
+        <div id="sub_page_box" class="section_2 w-1/4 overflow-y-auto">
+            <div id="sub_page_headers">
+                <h3>Training Updates</h3>
             </div>
-            <div class="border border-solid border-slate-400 p-1">
+            <div class="p-2">
                 <p>
                     Upcoming Trainings on Tosca starting Batch 1 from Apr 2024
                 </p>
@@ -256,7 +252,7 @@ content %}
             <!-- Reset Button -->
             <button
                 id="resetBtn"
-                class="p-2 border border-gray-300 rounded bg-gray-200"
+                class="p-2 border border-gray-300 rounded bg-gray-800"
             >
                 Reset Filters
             </button>

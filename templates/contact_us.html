@@ -1,96 +1,76 @@
 {% extends "nav.html" %}
 {% block title %}About us{% endblock %}
 {% block content %}
-    <style>
-        .card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            margin-top: 10px;
-        }
-
-        .card-body {
-            flex: 0 1 auto; /* Make the card body grow to fill the space */
-        }
-        .form-section {
-            margin-top: 30px;
-        }
-        .legend-styling {
-            border: 1px solid #ccc;
-            background-color: #fed7aa;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
-</head>
 <body>
     <div class="container">
-        <div class="w-full bg-white text-black text-left border-b-2 border-gray-300">
-          <h1 class="text-2xl font-bold inline-block">About us</h1>
+        <div id="page_header">
+          <h1>About us</h1>
         </div>
             
         </nav>
         <main>
             <section class="section" style="margin: 1rem">
-                <h2 class="bg-orange-200 p-2 rounded-lg text-lg font-bold text-black-400">Why choose Quality Engineering?</h2>
-                <p class="border border-solid border-slate-400 p-1">Our team ensures the highest quality by delivering comprehensive testing and certification for your product, making it bug-free. We utilize multi-level, multi-browser, and multi-tests through advanced accelerators, automated tools, and cutting-edge technologies.</p>
+                <div id="sub_page_box">
+                <h2 id="sub_page_headers">Why choose Quality Engineering?</h2>
+                <p class="p-2">Our team ensures the highest quality by delivering comprehensive testing and certification for your product, making it bug-free. We utilize multi-level, multi-browser, and multi-tests through advanced accelerators, automated tools, and cutting-edge technologies.</p>
+                </div>
                 <div class="row equal-height-cards">
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-header bg-gray-200 p-1 rounded-lg">
-                                <h3 class="card-title text-lg font-bold text-black-400">New Proposals</h3>
+                        <div id="sub_page_box" class="card">
+                            <div id="sub_page_headers">
+                                <h3>New Proposals</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="p-2">
                                 <p>We are delighted to work with you on creating test proposals for our existing or new clients.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-header bg-gray-200 p-1 rounded-lg">
-                                <h3 class="card-title text-lg font-bold text-black-400">Practice Capability Demo</h3>
+                        <div id="sub_page_box" class="card">
+                            <div id="sub_page_headers">
+                                <h3 >Practice Capability Demo</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="p-2">
                                 <p>We would be pleased to showcase our expertise in Quality Assurance and Delivery as part of our current engagements, utilizing our test accelerators.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-header bg-gray-200 p-1 rounded-lg">
-                                <h3 class="card-title text-lg font-bold text-black-400">Estimates</h3>
+                        <div id="sub_page_box" class="card">
+                            <div id="sub_page_headers">
+                                <h3>Estimates</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="p-2">
                                 <p>We can collaborate on the test estimates and revisions for QE expansion using our ROI templates.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-header bg-gray-200 p-1 rounded-lg">
-                                <h3 class="card-title text-lg font-bold text-black-400">Practice Leadership Connect</h3>
+                        <div id="sub_page_box" class="card">
+                            <div id="sub_page_headers">
+                                <h3>Practice Leadership Connect</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="p-2">
                                 <p>We would love to hear your feedback and thoughts on how we can improve and serve you better.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-header bg-gray-200 p-1 rounded-lg">
-                                <h3 class="card-title text-lg font-bold text-black-400">Quality Assurance Strategies</h3>
+                        <div id="sub_page_box" class="card">
+                            <div id="sub_page_headers">
+                                <h3 >Quality Assurance Strategies</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="p-2">
                                 <p>Explore our comprehensive strategies for ensuring product quality and reliability.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-header bg-gray-200 p-1 rounded-lg">
-                                <h3 class="card-title text-lg font-bold text-black-400">Client Success Stories</h3>
+                        <div id="sub_page_box" class="card">
+                            <div id="sub_page_headers">
+                                <h3>Client Success Stories</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="p-2">
                                 <p>Read about our successful engagements and how we have helped clients achieve their goals.</p>
                             </div>
                         </div>
@@ -101,7 +81,7 @@
             <section class="form-section">
                 <form id="requestForm" onsubmit="return validateForm()" class="border p-3">
                     <fieldset>
-                        <legend class="legend-styling  text-lg font-bold text-black-400">Request Form</legend>
+                        <legend id="page_sub-headers">Request Form</legend>
                         <div class="form-group">
                             <label for="area">Choose Area:</label>
                             <select id="area" name="area" class="form-control" onchange="updateContacts()">
@@ -128,7 +108,7 @@
                             <label for="description">Request Description:</label>
                             <textarea id="description" name="description" class="form-control" rows="4" aria-label="Request Description" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="background-color: #fed7aa; color: #000; font-size: 1.125rem; font-weight: bold;">Send Request</button>
+                        <button type="submit" class="default_Button">Send Request</button>
                     </fieldset>
                 </form>
             </section>
