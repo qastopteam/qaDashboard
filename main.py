@@ -56,6 +56,10 @@ def gcp():
     return {"Current_Page": current_page, "Current_Tab": current_tab}
 
 
+app.register_blueprint(proutes)  # Register the blueprint
+
+# app.register_blueprint(govroutes)
+
 @app.route("/")
 @app.route("/home")
 def home():

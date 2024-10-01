@@ -143,6 +143,164 @@
                             style="width: 100%; height: 100%"
                         ></canvas>
                     </div>
+                    <!---table border="1">
+                  <thead>
+                    <tr>
+                      <th class="bg-orange-200 p-1">Client Name</th>
+                      <th class="bg-orange-200 p-1">Resources</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Accuray</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Arch Capital</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Carrier</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  <tr>
+                      <td>Mars</td>
+                      <td style="text-align: center;">5</td>
+                  </tr>
+                  <tr>
+                      <td>Mcdonalds</td>
+                      <td style="text-align: center;">3</td>
+                  </tr>
+                  <tr>
+                      <td>Merck</td>
+                      <td style="text-align: center;">4</td>
+                  </tr>
+                  <tr>
+                      <td>Nationwide</td>
+                      <td style="text-align: center;">3</td>
+                  </tr>
+                  <tr>
+                      <td>Northen Trust</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Pepsico</td>
+                      <td style="text-align: center;">22</td>
+                  </tr>
+                  <tr>
+                      <td>Polen</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  <tr>
+                      <td>Practice - Bench</td>
+                      <td style="text-align: center;">8</td>
+                  </tr>
+                  <tr>
+                      <td>Prologis</td>
+                      <td style="text-align: center;">5</td>
+                  </tr>
+                  <tr>
+                      <td>Ptp</td>
+                      <td style="text-align: center;">1</td>
+                  </tr>
+                  <tr>
+                      <td>Quantum Energy Partners</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  <tr>
+                      <td>T-Mobile</td>
+                      <td style="text-align: center;">5</td>
+                  </tr>
+                  <tr>
+                      <td>Tata Steel</td>
+                      <td style="text-align: center;">2</td>
+                  </tr>
+                  </tbody>
+                </table--->
+                </div>
+                <!---Space b/w table-->
+                <!--div style="width: 10px; margin: 0 auto;">
+              <canvas id="myChart"></canvas>
+            </div---->
+            </div>
+
+            <!-- Choose the client drop down -->
+            <!--Drop down content--->
+            <div class="container mt-9">
+                <div class="bg-white-200 p-3 rounded-lg mb-3">
+                    <!--h2 class="text-lg font-bold text-black-400 mb-3">Governance</h2-->
+                    <div
+                        class="bg-orange-200 p-6 rounded-lg flex justify-between items-center mb-3"
+                    >
+                        <h2 class="text-lg font-bold text-black-800">
+                            Choose the Client
+                        </h2>
+                        <select
+                            id="accelerators"
+                            name="accelerators"
+                            class="p-2 border border-gray-300 rounded"
+                        >
+                            <option value="">--Select--</option>
+                            <option value="All">All</option>
+                            <option value="Link1">Accuray</option>
+                            <option value="Link2">Arch Capital</option>
+                            <option value="Link3">Carrier</option>
+                            <option value="Link4">Mars</option>
+                            <option value="Link5">Mcdonalds</option>
+                            <option value="Link6">Merck</option>
+                            <option value="Link7">Nationwide</option>
+                            <option value="Link8">Northen Trust</option>
+                            <option value="Link9">Pepsico</option>
+                            <option value="Link10">Polen</option>
+                            <option value="Link11">Practice - Bench</option>
+                            <option value="Link12">Prologis</option>
+                            <option value="Link13">Ptp</option>
+                            <option value="Link14">
+                                Quantum Energy Partners
+                            </option>
+                            <option value="Link15">T-Mobile</option>
+                            <option value="Link16">Tata Steel</option>
+                        </select>
+                    </div>
+                    <!-- Total Number of Projects and Resources -->
+                    <div class="total-box">
+                        <div class="bg-orange-200 p-2 rounded-lg mb-2">
+                            <h6>
+                                Total Number of Projects:
+                                <span id="totalResources">0</span>
+                            </h6>
+                        </div>
+                        <div class="bg-orange-200 p-2 rounded-lg">
+                            <h6>
+                                Total Number of Resources:
+                                <span id="totalProjects">0</span>
+                            </h6>
+                        </div>
+                    </div>
+                    <!-- Projects and Resources -->
+                    <div class="flex mb-3">
+                        <div
+                            class="w-full border border-solid border-slate-400 p-1"
+                        >
+                            <div class="table-header">
+                                <div class="header-item bg-orange-200">
+                                    Projects
+                                </div>
+                                <div class="header-item bg-orange-200">
+                                    Resources
+                                </div>
+                            </div>
+                            <div id="results" class="mt-1 scrollable-container">
+                                <!-- Results will be displayed here -->
+                                <div class="text-center text-gray-500">
+                                    <h4>
+                                        Choose the client to list the Projects
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

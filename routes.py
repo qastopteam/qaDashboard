@@ -208,7 +208,26 @@ def projects():
     if not model_class:
         return jsonify({'error': 'Invalid model'}), 400
 
+
+    # rag_status = request.args.get('rag_status', 'all')
+    # search_query = request.args.get('search', '')
+
     query = model_class.query
+
+    # # Filter by RAG status if specified
+    # if rag_status != 'all' and hasattr(model_class, 'rag_status'):
+    #     query = query.filter_by(rag_status=rag_status)
+
+    # # Dynamic search filter
+    # if search_query:
+    #     search_pattern = f"%{search_query}%"
+    #     search_filter = []
+    #     for attr in model_class.__table__.columns:
+    #         if isinstance(attr.type, String):  # Only consider string attributes
+    #             search_filter.append(attr.ilike(search_pattern))
+    #     if search_filter:
+    #         query = query.filter(or_(*search_filter))
+
     projects = query.all()  # Fetch all records
 
     return jsonify({
